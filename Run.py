@@ -3,6 +3,7 @@ from Outs import *
 from Articulo import *
 from Comentario import *
 from Renta import *
+from Conexion import *
 
 class Run:
 
@@ -19,8 +20,12 @@ class Run:
 
     def AgregarDatosFicticios(self):
 
+    def AgregarDatosFicticios(self):
+
         a1 = Articulo(1,666,"taladro")
+        GuardarArticulo(1,666,"taladro")
         a2 = Articulo(2,999,"papa")
+        GuardarArticulo("2","999","papa")
         print(a1.toString())
         print(a2.toString())
         self.articulos.append(a1)
