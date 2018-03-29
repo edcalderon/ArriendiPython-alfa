@@ -14,6 +14,7 @@ class Usuario:
         self.setIdentificacion(identificacion)
         self.setNombre(nombre)
         self.setPassword(_password)
+        GuardarUsuario(identificacion,nombre,_password)
         self.setDate()
         Usuario._setUsuarios(self)
         Usuario._setDickeys(self)
