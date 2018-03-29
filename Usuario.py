@@ -7,14 +7,13 @@ class Usuario:
     nombre = None
     usuarios = {}
     date = None
-    dickeys=[]
-    calificadores=0     #Variable tipo contador
+    dickeys = []
+    calificadores = 1     #Variable tipo contador
     
     def __init__(self,identificacion,nombre,_password):
         self.setIdentificacion(identificacion)
         self.setNombre(nombre)
         self.setPassword(_password)
-        GuardarUsuario(identificacion,nombre,_password)
         self.setDate()
         Usuario._setUsuarios(self)
         Usuario._setDickeys(self)
@@ -38,13 +37,15 @@ class Usuario:
         return self._password
 
     def setCalificacion(self,calificacion):
-        self.calificacion = calificacion
+        self.calificadores+=1
+        self.calificacion = (self.calificacion+calificacion)/(self.calificadores)
 
     def getCalificacion(self):
         return self.calificacion
 
     def setDate(self):
-        self.date = time.asctime()
+        if self.date == None:
+            self.date = time.asctime()
 
     def getDate(self):
         return self.date
@@ -62,41 +63,48 @@ class Usuario:
     def getUsuario(key):        #Retorna un usuario en especifico del diccionario
         return Usuario.usuarios[key]
 
-A=Usuario(1,'a',3)
-print(A.getIdentificacion(),A.getNombre(),A.getCalificacion(),A.getPassword(),sep='\n')
-print(type(Usuario.usuarios))
-print(type(Usuario.usuarios[1]))
-
 class Arrendatario(Usuario):
-    _Arrendatarios=[]
+    _Arrendatarios = []     #Lista de objetos
     def _init_(self,identificacion,nombre,_password):
         super()._init_(self,identificacion,nombre,_password)
     
     def _getArrendatarios():
-        orderkeys=Usuario.getKeys();
+        orderkeys = Usuario.getKeys()
         for i in orderkeys:
-            if isinstance(Usuario.getUsuario(orderkeys[i]),Arrendatario):
-                Arrendatario._Arrendatarios.append(Usuario.getUsuario(orderkeys[i]))
+            if isinstance(Usuario.getUsuario(i),Arrendatario):
+                Arrendatario._Arrendatarios.append(Usuario.getUsuario(i))
 
-    def mejoresArrendatarios():
+    def mejoresArrendatarios():     #Retorna una lista con los mejores arrendadres de manera descendente
+        listado=[]
         Arrendatario._getArrendatarios()
-        Arrendatario._Arrendatarios.sort(calificacion)
-        for i in Arrendatario._Arrendatarios:
-            aux1=super().getUsuario[Arrendatario._Arrendatarios[i]]
-            string+=aux1.getNombre(),aux1.getCalificacion()
-
-
-B=Arrendatario(2,'test','qwert')
-B.setCalificacion(4)
-C=Arrendatario(3,'test2','asdf')
-C.setCalificacion(5)
-#print('Mejores:',Arrendatario.mejoresArrendatarios())
-print(type(Usuario.usuarios[2]))
-print(isinstance(Usuario.usuarios[2],Arrendatario))
-print(Usuario.usuarios.keys())
-print(type(Usuario.usuarios[1]))
-print('keys',Usuario.getKeys())
+        sorted(Arrendatario._Arrendatarios, key=lambda arrendatario: Arrendatario.calificacion)     #Ordena por el atributo calificacion
+        for i in range(0,len(Arrendatario._Arrendatarios)):
+            obj=Arrendatario._Arrendatarios[i]
+            aux1=obj.getNombre()
+            aux2=obj.getCalificacion()
+            listado.append(aux1)
+            listado.append(aux2)
+        return listado
 
 class Arrendador(Usuario):
+    _Arrendadores = []     #Lista de objetos
+    
     def _init_(self,identificacion,nombre,_password):
         super()._init_(self,identificacion,nombre,_password)
+
+    def _getArrendadores():
+        orderkeys = Usuario.getKeys()
+        for i in orderkeys:
+            if isinstance(Usuario.getUsuario(i),Arrendador):
+                Arrendador._Arrendadores.append(Usuario.getUsuario(i))
+
+    def mejoresArrendadores():      #Retorna una lista con los mejores arrendadres de manera descendente
+        Arrendador._getArrendadores()
+        sorted(Arrendador._Arrendadores, key=lambda arrendador: Arrendador.calificacion)     #Ordena por el atributo calificacion
+        for i in range(0,len(Arrendador._Arrendadores)):
+            obj=Arrendador._Arrendadores[i]
+            aux1=obj.getNombre()
+            aux2=obj.getCalificacion()
+            listado.append(aux1)
+            listado.append(aux2)
+        return listado
