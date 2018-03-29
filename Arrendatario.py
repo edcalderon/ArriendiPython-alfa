@@ -1,31 +1,24 @@
 from Usuario import * 
 
 class Arrendatario(Usuario):
-    _Arrendatarios=[]
+    _Arrendatarios = []     #Lista de objetos
     def _init_(self,identificacion,nombre,_password):
         super()._init_(self,identificacion,nombre,_password)
     
     def _getArrendatarios():
-        orderkeys=Usuario.getKeys();
+        orderkeys = Usuario.getKeys()
         for i in orderkeys:
-            if isinstance(Usuario.getUsuario(orderkeys[i]),Arrendatario):
-                Arrendatario._Arrendatarios.append(Usuario.getUsuario(orderkeys[i]))
+            if isinstance(Usuario.getUsuario(i),Arrendatario):
+                Arrendatario._Arrendatarios.append(Usuario.getUsuario(i))
 
-    def mejoresArrendatarios():
+    def mejoresArrendatarios():     #Retorna una lista con los mejores arrendadres de manera descendente
+        listado=[]
         Arrendatario._getArrendatarios()
-        Arrendatario._Arrendatarios.sort(calificacion)
-        for i in Arrendatario._Arrendatarios:
-            aux1=super().getUsuario[Arrendatario._Arrendatarios[i]]
-            string+=aux1.getNombre(),aux1.getCalificacion()
-
-
-B=Arrendatario(2,'test','qwert')
-B.setCalificacion(4)
-C=Arrendatario(3,'test2','asdf')
-C.setCalificacion(5)
-#print('Mejores:',Arrendatario.mejoresArrendatarios())
-print(type(Usuario.usuarios[2]))
-print(isinstance(Usuario.usuarios[2],Arrendatario))
-print(Usuario.usuarios.keys())
-print(type(Usuario.usuarios[1]))
-print('keys',Usuario.getKeys())
+        sorted(Arrendatario._Arrendatarios, key=lambda arrendatario: Arrendatario.calificacion)     #Ordena por el atributo calificacion
+        for i in range(0,len(Arrendatario._Arrendatarios)):
+            obj=Arrendatario._Arrendatarios[i]
+            aux1=obj.getNombre()
+            aux2=obj.getCalificacion()
+            listado.append(aux1)
+            listado.append(aux2)
+        return listado
