@@ -1,11 +1,13 @@
 from pathlib import Path
-data_folder = Path("C:/Users/NelsonDavid/Desktop/ArriendiPython-alfa-master")
+data_folder = Path("C:/")
 
 def GuardarArticulo(identificacion,nombre,precio):
 	identificacion=str(identificacion)
 	nombre=str(nombre)
 	precio=str(precio)
-	guardar=open("baseArticulo.csv","a")
+	guardar=open("base.txt","a")
+	guardar.write("articulo")
+	guardar.write(",")
 	guardar.write(identificacion)
 	guardar.write(",")
 	guardar.write(nombre)
@@ -18,7 +20,9 @@ def GuardarUsuario(identificacion,nombre,_password):
 	identificacion=str(identificacion)
 	nombre=str(nombre)
 	_password=str(_password)
-	guardar=open("baseUsuario.csv","a")
+	guardar=open("base.txt","a")
+	guardar.write("usuario")
+	guardar.write(",")
 	guardar.write(identificacion)
 	guardar.write(",")
 	guardar.write(nombre)
