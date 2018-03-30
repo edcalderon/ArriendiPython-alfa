@@ -1,16 +1,21 @@
 from Comentario import *
-
+import time
 class Articulo:
 
     iva = 0.19
     num_articulos = 0
     comentarios = []
+    date=None
+    tipo=None
+    publicado=True
+    arrendado=False
 
-    def __init__(self,id,precio_renta,nombre):
-        self.id = id
-        self.precio_renta = precio_renta
-        self.nombre = nombre
-
+    def __init__(self,id,precio,nombre,tipo):
+        self.setId(id)
+        self.setPrecio(precio)
+        self.setNombre(nombre)
+        self.setDate()
+        self.setTipo(tipo)
 
     def toString(self):
         srt = "id= " + str(self.id) +" precio de renta= "+str(self.precio_renta)+ " nombre= "+str(self.nombre)
@@ -35,6 +40,12 @@ class Articulo:
         self.nombre = nombre
     def getNombre(self):
         return nombre
+    
+    def setDate(self):
+        self.date=time.asctime()
+
+    def setTipo(self,tipo):
+        self.tipo=tipo
 
 #    def setComentario(self,comentario):
 #        comentarios.append(self.comentario)
