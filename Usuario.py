@@ -1,4 +1,5 @@
 import time
+from Articulo import *
 class Usuario:
 
     identificacion = 0
@@ -14,14 +15,14 @@ class Usuario:
         if identificacion in Usuario.usuarios:
             print('Error')      #print temporal
         else:
-            self.setIdentificacion(identificacion)
+            self._setIdentificacion(identificacion)
             self.setNombre(nombre)
             self.setPassword(_password)
             self.setDate()
             Usuario._setUsuarios(self)
             Usuario._setDickeys(self)
 
-    def setIdentificacion(self,identificacion):
+    def _setIdentificacion(self,identificacion):
         self.identificacion = identificacion
 
     def getIdentificacion(self):
@@ -41,7 +42,7 @@ class Usuario:
 
     def setCalificacion(self,calificacion):
         self.calificadores+=1
-        self.calificacion = (self.calificacion+calificacion)/(self.calificadores)
+        self.calificacion = int((self.calificacion+calificacion)/(self.calificadores))
 
     def getCalificacion(self):
         return self.calificacion

@@ -7,14 +7,16 @@ class Arrendador(Usuario):
         super()._init_(self,identificacion,nombre,_password)
 
     def _getArrendadores():
+        Arrendador._Arrendadores.clear()
         orderkeys = Usuario.getKeys()
         for i in orderkeys:
             if isinstance(Usuario.getUsuario(i),Arrendador):
                 Arrendador._Arrendadores.append(Usuario.getUsuario(i))
 
-    def mejoresArrendadores():      #Retorna una lista con los mejores arrendadres de manera descendente
+    def peoresArrendadores():      #Retorna una lista con los peores arrendadres
+        listado=[]
         Arrendador._getArrendadores()
-        sorted(Arrendador._Arrendadores, key=lambda arrendador: Arrendador.calificacion)     #Ordena por el atributo calificacion
+        Arrendador._Arrendadores.sort(key=lambda arrendador: arrendador.calificacion)      #Ordena por el atributo calificacion
         for i in range(0,len(Arrendador._Arrendadores)):
             obj=Arrendador._Arrendadores[i]
             aux1=obj.getNombre()
@@ -23,6 +25,6 @@ class Arrendador(Usuario):
             listado.append(aux2)
         return listado
 
-    def _AllGets(self):
+    def AllGets(self):
         return super()._AllGets()
         
