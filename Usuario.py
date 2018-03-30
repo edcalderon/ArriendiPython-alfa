@@ -11,12 +11,15 @@ class Usuario:
     calificadores = 1     #Variable tipo contador
     
     def __init__(self,identificacion,nombre,_password):
-        self.setIdentificacion(identificacion)
-        self.setNombre(nombre)
-        self.setPassword(_password)
-        self.setDate()
-        Usuario._setUsuarios(self)
-        Usuario._setDickeys(self)
+        if identificacion in Usuario.usuarios:
+            print('Error')      #print temporal
+        else:
+            self.setIdentificacion(identificacion)
+            self.setNombre(nombre)
+            self.setPassword(_password)
+            self.setDate()
+            Usuario._setUsuarios(self)
+            Usuario._setDickeys(self)
 
     def setIdentificacion(self,identificacion):
         self.identificacion = identificacion
@@ -63,3 +66,16 @@ class Usuario:
     def getUsuario(key):        #Retorna un usuario en especifico del diccionario
         return Usuario.usuarios[key]
 
+    def _AllGets(self):
+        atributos=[]
+        aux1=self.getIdentificacion()
+        aux2=self.getNombre()
+        aux3=self.getPassword()
+        aux4=self.getCalificacion()
+        aux5=self.getDate()
+        atributos.append(aux1)
+        atributos.append(aux2)
+        atributos.append(aux3)
+        atributos.append(aux4)
+        atributos.append(aux5)
+        return atributos

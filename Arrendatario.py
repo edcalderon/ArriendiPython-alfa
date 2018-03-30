@@ -22,3 +22,6 @@ class Arrendatario(Usuario):
             listado.append(aux1)
             listado.append(aux2)
         return listado
+
+    def _AllGets(self):
+        return super()._AllGets()
