@@ -59,7 +59,7 @@ class Mensaje:
         1.arrendar tus articulos  (en construccion)
         2.cancelar Arriendo        (en construccion)
         3.ver tus arriendo           (en construccion)
-        4.Volver          
+        4.Volver
 
 
         """)
