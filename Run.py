@@ -3,7 +3,7 @@ from Mensaje import *
 from Articulo import *
 from Comentario import *
 from Renta import *
-from Conexion import *
+#from Conexion import *
 from Usuario import *
 from Arrendador import *
 
