@@ -3,6 +3,12 @@ This is a git repo
 
 pre-BETA de AriendiAPP is here!
 
+novedades:
+
+- login funcional, con registro de usuarios (para no tener que crea un usuario cada vez que quieran probar la app, hay un usuario por defecto: nombre = arriendi, contraseña = god)
+- zonas nuevas
+
+
 operaciones funcionales al momento 
 
         1. Agregar datos ficticios.
