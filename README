@@ -9,7 +9,7 @@ novedades:
 - zonas nuevas
 
 
-operaciones funcionales al momento 
+operaciones funcionales al momento
 
         1. Agregar datos ficticios.
         2. Ver todos los articulos.
@@ -28,10 +28,3 @@ operaciones funcionales al momento
 *falta acoplarla con la base de datos pero creo que eso lo dejaremos a lo ultimo cuando tengamos todas las funciones ready
 
 *arrendatario aun no lo uso, creo que no lo usaremos pues todo usuario puede ser un arrendador (esto aun no esta 100 decidido, pero hasta donde veo no va ser necesario)
-
-
-
-
-
-
-
