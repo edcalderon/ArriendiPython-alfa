@@ -32,7 +32,7 @@ class Articulo:
         Articulo.id_articulos+=1
         self.id = Articulo.id_articulos
     def getId(self):
-        return self.id_usuario
+        return self.id
     def setPrecio(self,precio):
         self.precio = precio
     def getPrecio(self):

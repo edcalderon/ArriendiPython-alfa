@@ -69,8 +69,9 @@ class Run:
             print("articulo {0} ingresado correctamente".format(i+1))
 
     def VerMisArticulos(self):
+        print("Tus articulos: ")
         for art in self.articulos:
-            if art.getPropietario() == Run.usuario_actual:
+            if art.getPropietario() == Run.usuario_actual.getNombre():
                 print (art.toString())
 
     def SerArrendador(self):
