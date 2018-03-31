@@ -1,12 +1,31 @@
 This is a git repo
 
-pre-alfa de AriendiAPP 
+
+pre-BETA de AriendiAPP is here!
 
 operaciones funcionales al momento 
 
-        1. Agregar Datos Ficticios
-        2. Ver Articulos
-        3. Agregar Comentarios
-        4. Ver Comentarios
-        5. Salir
+        1. Agregar datos ficticios.
+        2. Ver todos los articulos.
+        3. Comentar articulos.
+        4. Ver Comentarios.
+        5. Agregar articulos.
+        6. Ver mis articulos.
+        7. Ser arrendador.
+        8. Arrendar articulo.
+        9. Volver Inicio.
+        10. Salir.
+
+
+*la opcion 8 esta en construccion
+
+*falta acoplarla con la base de datos pero creo que eso lo dejaremos a lo ultimo cuando tengamos todas las funciones ready
+
+*arrendatario aun no lo uso, creo que no lo usaremos pues todo usuario puede ser un arrendador (esto aun no esta 100 decidido, pero hasta donde veo no va ser necesario)
+
+
+
+
+
+
 
