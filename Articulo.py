@@ -19,7 +19,7 @@ class Articulo:
         self.setArrendado(False)
 
     def toString(self):
-        srt = "["+ "Id:"+str(self.id)+" Nombre:"+str(self.nombre)+" Renta mensual:"+str(self.precio)+" Fecha de creacion:"+str(self.date)+"\n Tipo de articulo:"+str(self.tipo)+" Propietario:"+str(self.propietario) +" ]"
+        srt = "["+ "Id:"+str(self.id)+" Nombre:"+str(self.nombre)+" Renta mensual:"+str(self.precio)+" Fecha de creacion:"+str(self.date)+"\n Tipo de articulo:"+str(self.tipo)+" Propietario:"+str(self.propietario.getNombre()) +" ]"
         return srt
 
     @staticmethod

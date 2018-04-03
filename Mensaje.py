@@ -56,9 +56,9 @@ class Mensaje:
         *********************************************************************************
         estas son sus operaciones
 
-        1.arrendar tus articulos  (en construccion)
-        2.cancelar Arriendo        (en construccion)
-        3.ver tus arriendo           (en construccion)
+        1.Arrendar tus articulos
+        2.Cancelar Arriendo
+        3.Ver tus arriendo
         4.Volver
 
 
