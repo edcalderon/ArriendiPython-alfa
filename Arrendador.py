@@ -4,14 +4,15 @@ class Arrendador(Usuario):
 
    arrendadores = []     #Lista de objetos
 
-   def __init__(self,cedula,celular,direccion):
+   def __init__(self,nombre,_password,cedula,celular,direccion):
+        Usuario.__init__(self,nombre,_password)
         self.setCedula(cedula)
         self.setCelular(celular)
         self.setDireccion(direccion)
 
    def toString(self):
-        srt = "[" +"Cedula:" + str(self.getCedula())+" Celular:" + str(self.getCelular())+ " Direccion:" + str(self.getDireccion())  + "]"
-        return srt
+        return "[Cedula:%s, Celular:%s, Dirreción:%s]" %(str(self.getCedula()),self.getCelular(),self.getDireccion())
+
    def setCedula(self,cedula):
         self.cedula = cedula
    def getCedula(self):

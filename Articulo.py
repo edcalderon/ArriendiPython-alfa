@@ -19,8 +19,7 @@ class Articulo:
         self.setArrendado(False)
 
     def toString(self):
-        srt = "["+ "Id:"+str(self.id)+" Nombre:"+str(self.nombre)+" Renta mensual:"+str(self.precio)+" Fecha de creacion:"+str(self.date)+"\n Tipo de articulo:"+str(self.tipo)+" Propietario:"+str(self.propietario.getNombre()) +" ]"
-        return srt
+        return "[ID:%s, Nombre:%s, Valor Renta Diaria:%s, Fecha De Creacion:%s, Tipo de Articulo:%s, Propietario:%s]" %(str(self.id),self.nombre,str(self.precio),str(self.date),self.tipo,self.propietario.getNombre())
 
     @staticmethod
     def BuscarArticuloPorId(id_a_buscar,list_art = []):
@@ -42,9 +41,7 @@ class Articulo:
     def getNombre(self):
         return self.nombre
     def setPropietario(self,propietario):
-#        for usr in Usuario.users:
-#            if usr == propietario:
-                self.propietario = propietario
+        self.propietario = propietario
     def getPropietario(self):
         return self.propietario
     def setDate(self):

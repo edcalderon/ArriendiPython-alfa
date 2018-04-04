@@ -23,8 +23,9 @@ class Mensaje:
         6. Ver mis articulos.
         7. Ser arrendador.
         8. Arrendar articulo.
-        9. Volver Inicio.
-        10. Salir.
+        9. Ver Rentas disponibles
+        10. Volver Inicio.
+        11. Salir.
         """)
 
     def display_menu_registroUsuario(self):
