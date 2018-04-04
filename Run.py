@@ -164,7 +164,6 @@ class Run:
                 usuario = input("ingrese el usuario: ")
                 Run.usuario_actual = Usuario.BuscarUsuarioPorNombre(usuario,Usuario.users)
                 if Run.usuario_actual:
-                    if Run.usuario_actual in Usuario.users:
                            contraseña = input("ingrese la contraseña: ")
                            if Run.usuario_actual.getPassword() == contraseña:
                                    while self.break_while == 1:
