@@ -123,12 +123,12 @@ class Run:
                      if opcion == "3":
                             Run().VerMisArriendos()
                  else:
-                    print("no tienes articulos en arriendo, pon un articulo en renta primero!")
+                    print("no tienes articulos aun, ingresa un articulo, volver + opción 5")
                  if opcion == "4":
                     Mensaje().display_menu_operaciones()
                     self.break_while_2 = 0
         else:
-             print ("no eres arrendador")
+             print ("No puedes publicar Rentas de articulos, registrate como Arrendador, opcion 7 ")
 
     @staticmethod
     def VerMisArriendos():
@@ -160,28 +160,28 @@ class Run:
         while self.break_while == 1:
             Mensaje().display_menu_bienvenida()
             opcion = input("ingrese una opcion: ")
-            if opcion == "1":
+            if opcion == "1" or opcion == "s" or opcion == "si":
                 usuario = input("ingrese el usuario: ")
-                for usr in Usuario.users:
-                    if usr.getNombre() == usuario:
-                        contraseña = input("ingrese la contraseña: ")
-                        if usr.getPassword() == contraseña:
-                            Run.usuario_actual = Usuario.BuscarUsuarioPorNombre(usuario,Usuario.users)
-                            while self.break_while == 1:
-                                print(" \n Hola Usuario {0} ".format(usuario.upper()))
-                                Mensaje().display_menu_operaciones()
-                                opcion = input("ingrese una opcion: ")
-                                action = self.switcher_operaciones.get(str(opcion))
-                                if str(opcion) in self.switcher_operaciones:
-                                    action()
-                                else:
-                                    print("{0} no es una opcion valida".format(opcion))
-                        else:
-                            print("contraseña incorrecta")
-                    else:
-                        print("usuario no encontrado")
+                Run.usuario_actual = Usuario.BuscarUsuarioPorNombre(usuario,Usuario.users)
+                if Run.usuario_actual:
+                    if Run.usuario_actual in Usuario.users:
+                           contraseña = input("ingrese la contraseña: ")
+                           if Run.usuario_actual.getPassword() == contraseña:
+                                   while self.break_while == 1:
+                                        print(" \n Hola Usuario {0} ".format(usuario.upper()))
+                                        Mensaje().display_menu_operaciones()
+                                        opcion = input("ingrese una opcion: ")
+                                        action = self.switcher_operaciones.get(str(opcion))
+                                        if str(opcion) in self.switcher_operaciones:
+                                            action()
+                                        else:
+                                            print("{0} no es una opcion valida".format(opcion))
+                           else:
+                                print("contraseña incorrecta")
+                else:
+                    print("usuario no encontrado")
 
-            if opcion == "2":
+            if opcion == "2" or opcion == "n" or opcion == "no":
                 Mensaje().display_menu_registroUsuario()
                 nombre = input("ingrese un nombre de usuario: ")
                 password = input("ingrese un nombre una constraseña: ")
