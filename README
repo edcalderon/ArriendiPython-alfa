@@ -1,15 +1,17 @@
 This is a git repo
 
 
-pre-BETA 2.0 de AriendiAPP
+BETA  de AriendiAPP
 
 novedades:
 
-- login funcional, con registro de usuarios (para no tener que crea un usuario cada vez que quieran probar la app, hay un usuario por defecto: nombre = arriendi, contraseña = god)
+- Ya se puede rentar ! (aun hay detalles, pero ya esta funcional)
+- login mejorado (usuario por defecto: nombre = arriendi, contraseña = god)
 
 
 
 operaciones funcionales al momento
+
 
         1. Agregar datos ficticios.
         2. Ver todos los articulos.
@@ -18,15 +20,18 @@ operaciones funcionales al momento
         5. Agregar articulos.
         6. Ver mis articulos.
         7. Ser arrendador.
-        8. Arrendar articulo.
-            8.1.Arrendar tus articulos
-            8.2.Cancelar Arriendo
-            8.3.Ver tus arriendo
-            8.4.Volver
-        9. Volver Inicio.
-        10. Salir.
+        8. Poner en Renta articulos.
+          8.1.Arrendar tus articulos
+          8.2.Cancelar Arriendo
+          8.3.Ver tus arriendo
+          8.4.Volver
+        9. Rentar articulos.
+            9.1.Ver rentas disponibles
+            9.2.Rentar
+            9.3.Ver mi rentas
+            9.4.Volver
+        10. Volver Inicio.
+        11. Salir.
 
-
-release 2.0: opcion 8 esta funcional (falta opciones ademas de enlazar con arrendatario, y cuadrar fechas)
 
 LA IMPLENTACION de la BASE DE DATOS creo que es mejor dejarla pa lo ultimo, por facilidad
