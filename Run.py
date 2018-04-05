@@ -25,8 +25,8 @@ class Run:
         "5": self.AgregarArticulos,
         "6": self.VerMisArticulos,
         "7": self.SerArrendador,
-        "8": self.Arrendar,
-        "9": self.VerRentasDisponibles,
+        "8": self.PonerEnRenta,
+        "9": self.Rentar,
         "10": self.Volver,
         "11": self.Salir
         }
@@ -38,6 +38,8 @@ class Run:
 #        GuardarArticulo(2,999,"papa","arriendi")
         Run.articulos.append(a1)
         Run.articulos.append(a2)
+        Run.usuario_actual.articulos.append(a1)
+        Run.usuario_actual.articulos.append(a1)
         print("Datos ingresados correctamente")
 
     def VerArticulos(self):
@@ -67,9 +69,11 @@ class Run:
         for i in range (0,int(opcion)):
             nombre = input("nombre del articulo {0}: ".format(i+1))
             precio = input("precio del articulo {0}: ".format(i+1))
-            propietario = input("propietario del articulo {0}: ".format(i+1))
-            a1 = Articulo(str(precio),str(nombre),str(propietario))
+            paux = input("propietario del articulo {0}: ".format(i+1))
+            propietario = Usuario.BuscarUsuarioPorNombre(paux,Usuario.users)
+            a1 = Articulo(str(precio),str(nombre),propietario)
             self.articulos.append(a1)
+            Run.usuario_actual.articulos.append(a1)
             print("articulo {0} ingresado correctamente".format(i+1))
 
     @staticmethod
@@ -88,19 +92,21 @@ class Run:
                 direccion= input("ingrese su dureccion: ")
                 Arr1 = Arrendador(Run.usuario_actual.getNombre(),Run.usuario_actual.getPassword(),int(cedula),int(celular),str(direccion))
                 Arrendador.arrendadores.append(Arr1)
+                Arr1 = Arrendatario(Run.usuario_actual.getNombre(),Run.usuario_actual.getPassword(),int(cedula),int(celular),str(direccion))
+                Arrendatario.arrendatarios.append(Arr1)
                 Run.usuario_actual.setIsArrendador(True)
                 print("Arrendador {0} ingresado correctamente.".format(Arr1.getNombre().upper()))
                 print(Arr1.toString())
             if opcion == "2":
                 Mensaje().display_menu_operaciones()
 
-    def Arrendar(self):
+    def PonerEnRenta(self):
         self.break_while_2 = 1
         if Run.usuario_actual.isArrendador == True:
             while self.break_while_2 == 1:
                  Mensaje().display_menu_zonaArrendador()
                  opcion = input("ingrese una opcion: ")
-                 if Run().VerMisArticulos():
+                 if Run.usuario_actual.articulos:
                      if opcion == "1":
                             Run().VerMisArticulos()
                             print("")
@@ -109,6 +115,7 @@ class Run:
                             periodo = input("ingrese el periodo minimo que desea arrendar el articulo {0} en dias:".format(art.getNombre().upper()))
                             rent1 = Renta(art,Run.usuario_actual,periodo)
                             Renta.rentas.append(rent1)
+                            Run.usuario_actual.rentas.append(rent1)
                             print("renta añadida:")
                             print(rent1.toString())
                      if opcion == "2":
@@ -130,21 +137,55 @@ class Run:
         else:
              print ("No puedes publicar Rentas de articulos, registrate como Arrendador, opcion 7 ")
 
-    @staticmethod
+    @staticmethod  # metodo de arrendador
     def VerMisArriendos():
         print("Tienes las siguientes publicaciones de arriendo:")
         for renta in Renta.rentas:
             if renta.getArrendador() == Run.usuario_actual:
                 print(renta.toString())
 
-    def VerRentasDisponibles(self):
-        if not Renta.rentas:
-            print("no hay rentas aun")
+    def Rentar(self):
+        self.break_while_2 = 1
+        if Run.usuario_actual.isArrendador == True:
+            while self.break_while_2 == 1:
+                 Mensaje().display_menu_zonaRenta()
+                 opcion = input("ingrese una opcion: ")
+                 if opcion == "1":
+                        Run().VerRentasDisponibles()
+                 if opcion == "2":
+                        print("")
+                        id_renta = input("ingrese el ID de la renta deseada: ")
+                        rent1 = Renta.BuscarRentaPorId(id_renta,Renta.rentas)
+                        rent1.setArrendatario(Run.usuario_actual)
+                        rent1.isDisponible = False
+                        Run.usuario_actual.rentas.append(rent1)
+                        print("renta concretada")
+                 if opcion == "3":
+                     Run().VerMisRentas()
+                 if opcion == "4":
+                    Mensaje().display_menu_operaciones()
+                    self.break_while_2 = 0
         else:
-            print("**********lista de rentas:**************")
+             print ("No puedes rentar articulos aun, inscribete como arrendatario, opcion 7 ")
+
+
+    def VerRentasDisponibles(self): #metodo de renta
+        if not Renta.rentas:
+            print("No hay rentas aun, pon en renta un articulo, opcion 8")
+        else:
+            print("**********lista de articulos en renta disponibles:**************")
             for renta in Renta.rentas:
-                if renta.isDisponible()==True:
+                if renta.isDisponible == True:
                     print (renta.toString())
+
+    def VerMisRentas(self): #metodo de renta
+        if not Run.usuario_actual.rentas:
+            print("No tienes rentas aun, pon en renta un articulo o renta uno, opcion 8 o 9")
+        else:
+            print("**********lista de mis rentas:**************")
+            for renta in Run.usuario_actual.rentas:
+                    print (renta.toString())
+
 
     def Volver(self):
         Run().run()

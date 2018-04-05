@@ -9,11 +9,12 @@ class Renta:
     rentas = []
     disponible = "disponible"
 
-    def __init__(self,articulo,arrendador,periodo):
+    def __init__(self,articulo,arrendador,periodo,arrendatario=""):
         self.setId()
         self.setArticulo(articulo)
         self.setArrendador(arrendador)
         self.setPeriodo(periodo)
+        self.setArrendatario(arrendatario)
         self.setIsDisponible(True)
 
 
@@ -23,10 +24,14 @@ class Renta:
                 return renta
 
     def toString(self):
+
         if self.getIsDisponible() == False:
             Renta.disponible = "no disponibles"
-        srt = "[" + "Id renta:" + str(self.getId()) + " Articulo:"+ str(self.getArticulo().getNombre())+ " Periodo:"+ str(self.getPeriodo())+" Precio por dia:"+ str(self.getArticulo().getPrecio())+ " Estado:"+Renta.disponible+ "]"
-        return srt
+        if self.getArrendatario():
+            arrendatario = self.getArrendatario().getNombre()
+        else:
+            arrendatario = "none"
+        return "[ID:%s, Articulo:%s, Periodo(Dias):%s, Precio(xDia):%s, Estado:%s, Arrendador:%s, Arrendatario:%s]" % (str(self.getId()),self.getArticulo().getNombre(),self.getPeriodo(),self.getArticulo().getPrecio(),Renta.disponible,self.getArrendador().getNombre(),arrendatario)
 
     def setId(self):
         Renta.id_rentas+=1
@@ -56,7 +61,7 @@ class Renta:
     def setArrendatario(self,arrendatario):
          self.arrendatario = arrendatario
     def getArrendatario(self):
-         return arrendatario
+         return self.arrendatario
     def setIsDisponible(self,valor):
          self.isDisponible = bool(valor)
     def getIsDisponible(self):

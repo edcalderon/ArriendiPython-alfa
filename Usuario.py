@@ -15,8 +15,12 @@ class Usuario:
             self.setPassword(_password)
             self.setDate()
             self.setIsArrendador(False)
+            self.articulos = []
+            self.rentas = []
+
             Usuario._setUsuarios(self)
             Usuario._setDickeys(self)
+
 
     def toString(self):
          srt = "id:" + str(self.getId())+ " nombre de usuario:" + str(self.getNombre()) + " constraseña:"+ str(self.getPassword())
