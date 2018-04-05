@@ -22,8 +22,8 @@ class Mensaje:
         5. Agregar articulos.
         6. Ver mis articulos.
         7. Ser arrendador.
-        8. Arrendar articulo.
-        9. Ver Rentas disponibles
+        8. Poner en Renta articulos.
+        9. Rentar articulos.
         10. Volver Inicio.
         11. Salir.
         """)
@@ -38,10 +38,11 @@ class Mensaje:
         print("""
 
         *********************************************************************************
-                                     Registro arrendador
+                                     Registro Arrendador
         *********************************************************************************
         Para poner en renta un articulo debes convierte en un arrendador,
         para ello necesitamos mas informacion sobre ti, como cedula y datos de contacto.
+        este proceso ademas te permite rentar articulos como arrendatario.
         ¿estas de acuerdo ?
 
         1.Si
@@ -53,13 +54,28 @@ class Mensaje:
         print("""
 
         *********************************************************************************
-                                      Zona  arrendador
+                                      Zona  Arrendador
         *********************************************************************************
         estas son sus operaciones
 
-        1.Arrendar tus articulos
-        2.Cancelar Arriendo
-        3.Ver tus arriendo
+        1.Publicar un articulo en renta
+        2.Cancelar una publicacion de renta
+        3.Ver tus articulos en renta
+        4.Volver
+
+
+        """)
+    def display_menu_zonaRenta(self):
+        print("""
+
+        *********************************************************************************
+                                      Zona  Rentas
+        *********************************************************************************
+        estas son sus operaciones
+
+        1.Ver rentas disponibles
+        2.Rentar
+        3.Ver mi rentas
         4.Volver
 
 

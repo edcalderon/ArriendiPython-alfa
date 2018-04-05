@@ -10,6 +10,9 @@ class Arrendador(Usuario):
         self.setCelular(celular)
         self.setDireccion(direccion)
 
+
+
+
    def toString(self):
         return "[Cedula:%s, Celular:%s, Dirreción:%s]" %(str(self.getCedula()),self.getCelular(),self.getDireccion())
 
