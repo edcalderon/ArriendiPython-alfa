@@ -11,11 +11,13 @@ class Mensaje:
         Mensaje.messages.setdefault('Precio','Precio: ')
         Mensaje.messages.setdefault('Disponible','Disponible: ')
         Mensaje.messages.setdefault('Propietario','Propietario: ')
+        Mensaje.messages.setdefault('ID','ID: ')
         
     def ImprimirKey(key):
         print(Mensaje.messages[key])
 
-    def MejoresArticulos(nombre,tipo,precio,arredado,propietario):
+    def MejoresArticulos(id,nombre,tipo,precio,arredado,propietario):
+        print(Mensaje.messages['ID'],id,sep='\t')
         print(Mensaje.messages['Nombre'],nombre,Mensaje.messages['Tipo'],tipo,Mensaje.messages['Precio'],precio,Mensaje.messages['Disponible'],arredado,Mensaje.messages['Propietario'],propietario,sep='\t')
 
     def display_menu_bienvenida(self):

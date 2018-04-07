@@ -54,7 +54,11 @@ class Articulo:
         self.date = time.asctime()
     def setTipo(self,tipo):
         self.tipo = tipo
+    def getTipo(self):
+        return self.tipo
     def setPublicado(self,estado):
         self.publicado = estado
     def setArrendado(self,estado):
         self.arredado = estado
+    def getArrendado(self):
+        return self.arredado
