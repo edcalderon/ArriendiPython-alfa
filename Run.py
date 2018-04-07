@@ -6,6 +6,7 @@ from Renta import *
 #from Conexion import *
 from Usuario import *
 from Arrendador import *
+from Arrendatario import *
 
 class Run:
 
@@ -27,8 +28,9 @@ class Run:
         "7": self.SerArrendador,
         "8": self.PonerEnRenta,
         "9": self.Rentar,
-        "10": self.Volver,
-        "11": self.Salir
+        "11": self.Volver,
+        "12": self.Salir,
+        "10": Arrendatario.MejorPrecioArticulo
         }
 
     def AgregarDatosFicticios(self):
@@ -195,6 +197,7 @@ class Run:
         sys.exit(0)
 
     def run(self):
+        Mensaje.AddMessages()
         u1 = Usuario("arriendi","god")  # usuario dios
         Usuario.users.append(u1)
         u1.setIsArrendador(True)          # arrendador por defecto

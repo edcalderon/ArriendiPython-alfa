@@ -1,5 +1,23 @@
 class Mensaje:
 
+    messages={}
+    
+    def AddMessages():
+        Mensaje.messages.setdefault('tipoNombre','¿Desea buscar por tipo o por nombre? Oprima\n1 para tipo\n2 para nombre')
+        Mensaje.messages.setdefault('nombre','Ingrese el nombre')
+        Mensaje.messages.setdefault('tipo','Ingrese el tipo')
+        Mensaje.messages.setdefault('Nombre','Nombre: ')
+        Mensaje.messages.setdefault('Tipo','Tipo: ')
+        Mensaje.messages.setdefault('Precio','Precio: ')
+        Mensaje.messages.setdefault('Disponible','Disponible: ')
+        Mensaje.messages.setdefault('Propietario','Propietario: ')
+        
+    def ImprimirKey(key):
+        print(Mensaje.messages[key])
+
+    def MejoresArticulos(nombre,tipo,precio,arredado,propietario):
+        print(Mensaje.messages['Nombre'],nombre,Mensaje.messages['Tipo'],tipo,Mensaje.messages['Precio'],precio,Mensaje.messages['Disponible'],arredado,Mensaje.messages['Propietario'],propietario,sep='\t')
+
     def display_menu_bienvenida(self):
         print("""
           BIENVENIDO A ARRIENDIAPP
@@ -24,8 +42,9 @@ class Mensaje:
         7. Ser arrendador.
         8. Poner en Renta articulos.
         9. Rentar articulos.
-        10. Volver Inicio.
-        11. Salir.
+        10. Mejor precio articulos
+        11. Volver Inicio.
+        12. Salir.
         """)
 
     def display_menu_registroUsuario(self):

@@ -1,4 +1,6 @@
 from Usuario import *
+from Mensaje import *
+from Articulo import *
 
 class Arrendatario(Usuario):
 
@@ -48,3 +50,36 @@ class Arrendatario(Usuario):
 
     def AllGets(self):
         return super()._AllGets()
+
+    def MejorPrecioArticulo():
+        _list=[]
+        type=None
+        Mensaje.ImprimirKey('tipoNombre')
+        auxInt=int(input())
+        if auxInt==1:
+            Mensaje.ImprimirKey('tipo')
+            option=str(input())
+            for i in Articulo.articles:
+                aux=Articulo.articles[i]
+                if str(aux.tipo)==option:
+                    _list.append(aux)
+        elif auxInt==2:
+            Mensaje.ImprimirKey('nombre')
+            option=str(input())
+            for i in Articulo.articles:
+                aux=Articulo.articles[i]
+                if str(aux.nombre)==option:
+                    _list.append(aux)
+        _list.sort(key=lambda articulo: articulo.precio, reverse=False)
+        a=len(_list)
+        for i in range(0,a):
+            obj=_list[i]
+            aux1=obj.nombre
+            aux2=obj.tipo
+            aux3=obj.precio
+            if (obj.arredado)==False:
+                aux4='SI'
+            elif (obj.arredado)==True:
+                aux4='NO'
+            aux5=(obj.propietario).nombre
+            Mensaje.MejoresArticulos(aux1,aux2,aux3,aux4,aux5)
