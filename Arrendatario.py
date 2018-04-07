@@ -61,25 +61,26 @@ class Arrendatario(Usuario):
             option=str(input())
             for i in Articulo.articles:
                 aux=Articulo.articles[i]
-                if str(aux.tipo)==option:
+                if str(aux.getTipo())==option:
                     _list.append(aux)
         elif auxInt==2:
             Mensaje.ImprimirKey('nombre')
             option=str(input())
             for i in Articulo.articles:
                 aux=Articulo.articles[i]
-                if str(aux.nombre)==option:
+                if str(aux.getNombre())==option:
                     _list.append(aux)
-        _list.sort(key=lambda articulo: articulo.precio, reverse=False)
+        _list.sort(key=lambda articulo: articulo.getPrecio(), reverse=False)
         a=len(_list)
         for i in range(0,a):
             obj=_list[i]
-            aux1=obj.nombre
-            aux2=obj.tipo
-            aux3=obj.precio
-            if (obj.arredado)==False:
-                aux4='SI'
-            elif (obj.arredado)==True:
-                aux4='NO'
-            aux5=(obj.propietario).nombre
-            Mensaje.MejoresArticulos(aux1,aux2,aux3,aux4,aux5)
+            aux1=obj.getId()
+            aux2=obj.getNombre()
+            aux3=obj.getTipo()
+            aux4=obj.getPrecio()
+            if (obj.getArrendado())==False:
+                aux5='SI'
+            elif (obj.getArrendado())==True:
+                aux5='NO'
+            aux6=(obj.getPropietario()).getNombre()
+            Mensaje.MejoresArticulos(aux1,aux2,aux3,aux4,aux5,aux6)
