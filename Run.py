@@ -28,11 +28,33 @@ class Run:
         "7": self.SerArrendador,
         "8": self.PonerEnRenta,
         "9": self.Rentar,
-        "12": self.Volver,
-        "13": self.Salir,
+        "13": self.Volver,
+        "14": self.Salir,
         "10": self.MejorPrecioArticulo,
-        "11": self.ArticuloMasDisponible
+        "11": self.ArticuloMasDisponible,
+        "12": self.MenosUso
         }
+
+    def MenosUso(self):
+        _list=[]
+        Mensaje.ImprimirKey('NombreUsado')
+        _name=str(input())
+        for i in Articulo.articles:
+            aux = Articulo.articles[i]
+            if str(aux.getNombre())==_name:
+                if aux.getArrendado()==False:
+                    _list.append(aux)
+        _list.sort(key=lambda articulo: articulo.getVecesUsado(), reverse=False)
+        _a=len(_list)
+        for i in range(0,_a):
+            obj = _list[i]
+            aux1 = obj.getId()
+            aux2 = obj.getNombre()
+            aux3 = obj.getTipo()
+            aux4 = obj.getPrecio()
+            aux5 = obj.getPropietario().getNombre()
+            aux6 = obj.getVecesUsado()
+            Mensaje.MenosUsos(aux1,aux2,aux3,aux4,aux5,aux6)
 
     def MejorPrecioArticulo(self):
         _list = []
@@ -183,6 +205,7 @@ class Run:
                             rent1 = Renta.BuscarRentaPorId(id_renta,Renta.rentas)
                             print(rent1)
                             rent1.setIsDisponible(False)
+                            rent1.getArticulo().setArrendado(False)
                             print("renta cambiada")
                             print(rent1.toString())
                      if opcion == "3":
@@ -218,6 +241,8 @@ class Run:
                         rent1.isDisponible = False
                         Run.usuario_actual.rentas.append(rent1)
                         print("renta concretada")
+                        rent1.getArticulo().setVecesUsado()
+                        rent1.getArticulo().setArrendado(True)
                  if opcion == "3":
                      Run().VerMisRentas()
                  if opcion == "4":
@@ -257,6 +282,9 @@ class Run:
         u1 = Usuario("arriendi","god")  # usuario dios
         Usuario.users.append(u1)
         u1.setIsArrendador(True)          # arrendador por defecto
+        u2 = Usuario("arriendi2","god2")  # usuario dios2
+        Usuario.users.append(u2)
+        u2.setIsArrendador(True)          # arrendador por defecto2
         while self.break_while == 1:
             Mensaje().display_menu_bienvenida()
             opcion = input("ingrese una opcion: ")

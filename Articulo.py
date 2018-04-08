@@ -9,6 +9,7 @@ class Articulo:
     comentarios = []
     id_articulos = 0        #contador
     articles = {}
+    veces_usado=0
 
     def __init__(self,precio,nombre,propietario):
         self._setId(Articulo.id_articulos)
@@ -62,3 +63,7 @@ class Articulo:
         self.arredado = estado
     def getArrendado(self):
         return self.arredado
+    def setVecesUsado(self):
+        self.veces_usado+=1
+    def getVecesUsado(self):
+        return self.veces_usado

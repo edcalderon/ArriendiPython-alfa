@@ -17,6 +17,8 @@ class Mensaje:
         Mensaje.messages.setdefault('PorNombre','Ingrese el nombre de los articulos para los que desea ver la mayor disponibilidad de tiempo')
         Mensaje.messages.setdefault('FechaIni','Fecha Inicial: ')
         Mensaje.messages.setdefault('FechaFin','Fecha Final: ')
+        Mensaje.messages.setdefault('Usado','Veces usado: ')
+        Mensaje.messages.setdefault('NombreUsado','Ingrese el nombre de los articulos para los que desea ver el menor uso')
 
         
     def ImprimirKey(key):
@@ -36,6 +38,10 @@ class Mensaje:
         print(Mensaje.messages['ID'],id,sep='\t')
         print(Mensaje.messages['Nombre'],nombre,Mensaje.messages['Tipo'],tipo,Mensaje.messages['Precio'],precio,Mensaje.messages['Propietario'],propietario,sep='\t')
         Mensaje.ImprimirFecha(self,'FechaFin')
+
+    def MenosUsos(id,nombre,tipo,precio,propietario,usado):
+        print(Mensaje.messages['ID'],id,Mensaje.messages['Usado'],usado,sep='\t')
+        print(Mensaje.messages['Nombre'],nombre,Mensaje.messages['Tipo'],tipo,Mensaje.messages['Precio'],precio,Mensaje.messages['Propietario'],propietario,sep='\t')
 
     def display_menu_bienvenida(self):
         print("""
@@ -63,8 +69,9 @@ class Mensaje:
         9. Rentar articulos.
         10. Mejor precio articulos
         11. Buscar articulo con la mayor disponibilidad
-        12. Volver Inicio.
-        13. Salir.
+        12. Articulo con menos uso
+        13. Volver Inicio.
+        14. Salir.
         """)
 
     def display_menu_registroUsuario(self):
