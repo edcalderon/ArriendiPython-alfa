@@ -8,7 +8,7 @@ class Articulo:
     num_articulos = 0
     comentarios = []
     id_articulos = 0        #contador
-    articles={}
+    articles = {}
 
     def __init__(self,precio,nombre,propietario):
         self._setId(Articulo.id_articulos)
@@ -25,10 +25,10 @@ class Articulo:
         Articulo.articles.setdefault(self.getId,self)
 
     def toString(self):
-        return "[ID:%s, Nombre:%s, Valor Renta Diaria:%s, Fecha De Creacion:%s, Tipo de Articulo:%s, Propietario:%s]" %(str(self.id),self.nombre,str(self.precio),str(self.date),self.tipo,self.propietario.getNombre())
+        return "[ID:%s, Nombre:%s, Valor Renta Diaria:%s, Fecha De Creacion:%s, Tipo de Articulo:%s, Propietario:%s]" % (str(self.id),self.nombre,str(self.precio),str(self.date),self.tipo,self.propietario.getNombre())
 
     @staticmethod
-    def BuscarArticuloPorId(id_a_buscar,list_art = []):
+    def BuscarArticuloPorId(id_a_buscar,list_art=[]):
         for art in list_art:
             if art.getId() == int(id_a_buscar):
                 return art

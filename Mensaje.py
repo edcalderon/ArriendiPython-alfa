@@ -1,6 +1,8 @@
+import datetime
+from Renta import *
 class Mensaje:
 
-    messages={}
+    messages = {}
     
     def AddMessages():
         Mensaje.messages.setdefault('tipoNombre','¿Desea buscar por tipo o por nombre? Oprima\n1 para tipo\n2 para nombre')
@@ -12,6 +14,10 @@ class Mensaje:
         Mensaje.messages.setdefault('Disponible','Disponible: ')
         Mensaje.messages.setdefault('Propietario','Propietario: ')
         Mensaje.messages.setdefault('ID','ID: ')
+        Mensaje.messages.setdefault('PorNombre','Ingrese el nombre de los articulos para los que desea ver la mayor disponibilidad de tiempo')
+        Mensaje.messages.setdefault('FechaIni','Fecha Inicial: ')
+        Mensaje.messages.setdefault('FechaFin','Fecha Final: ')
+
         
     def ImprimirKey(key):
         print(Mensaje.messages[key])
@@ -19,6 +25,17 @@ class Mensaje:
     def MejoresArticulos(id,nombre,tipo,precio,arredado,propietario):
         print(Mensaje.messages['ID'],id,sep='\t')
         print(Mensaje.messages['Nombre'],nombre,Mensaje.messages['Tipo'],tipo,Mensaje.messages['Precio'],precio,Mensaje.messages['Disponible'],arredado,Mensaje.messages['Propietario'],propietario,sep='\t')
+
+    def ImprimirFecha(self,key):
+        if key == 'FechaIni':
+            print(Mensaje.messages['FechaIni'],(datetime.datetime.ctime((Renta.getFechaini(self)))))
+        elif key == 'FechaFin':
+            print(Mensaje.messages['FechaFin'],(datetime.datetime.ctime((Renta.getFechafin(self)))))
+
+    def ImprimirDisponibilidadArticulos(self,id,nombre,tipo,precio,propietario):
+        print(Mensaje.messages['ID'],id,sep='\t')
+        print(Mensaje.messages['Nombre'],nombre,Mensaje.messages['Tipo'],tipo,Mensaje.messages['Precio'],precio,Mensaje.messages['Propietario'],propietario,sep='\t')
+        Mensaje.ImprimirFecha(self,'FechaFin')
 
     def display_menu_bienvenida(self):
         print("""
@@ -45,8 +62,9 @@ class Mensaje:
         8. Poner en Renta articulos.
         9. Rentar articulos.
         10. Mejor precio articulos
-        11. Volver Inicio.
-        12. Salir.
+        11. Buscar articulo con la mayor disponibilidad
+        12. Volver Inicio.
+        13. Salir.
         """)
 
     def display_menu_registroUsuario(self):

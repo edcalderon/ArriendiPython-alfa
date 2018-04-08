@@ -9,7 +9,7 @@ class Comentario:
        self.setDescripcion(descripcion)
 
    def toString(self):
-       srt = "[" +"Id articulo:" + str(self.articulo.getId())+" Nombre articulo:" + str(self.articulo.getNombre())+ " Puntuacion:" + str(self.puntuacion) + " Descripcion:"+ str(self.descripcion) + "]"
+       srt = "[" + "Id articulo:" + str(self.articulo.getId()) + " Nombre articulo:" + str(self.articulo.getNombre()) + " Puntuacion:" + str(self.puntuacion) + " Descripcion:" + str(self.descripcion) + "]"
        return srt
 
    def setPuntuacion(self,puntuacion):

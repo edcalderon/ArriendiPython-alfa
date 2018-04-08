@@ -28,10 +28,66 @@ class Run:
         "7": self.SerArrendador,
         "8": self.PonerEnRenta,
         "9": self.Rentar,
-        "11": self.Volver,
-        "12": self.Salir,
-        "10": Arrendatario.MejorPrecioArticulo
+        "12": self.Volver,
+        "13": self.Salir,
+        "10": self.MejorPrecioArticulo,
+        "11": self.ArticuloMasDisponible
         }
+
+    def MejorPrecioArticulo(self):
+        _list = []
+        type = None
+        Mensaje.ImprimirKey('tipoNombre')
+        auxInt = int(input())
+        if auxInt == 1:
+            Mensaje.ImprimirKey('tipo')
+            option = str(input())
+            for i in Articulo.articles:
+                aux = Articulo.articles[i]
+                if str(aux.getTipo()) == option:
+                    _list.append(aux)
+        elif auxInt == 2:
+            Mensaje.ImprimirKey('nombre')
+            option = str(input())
+            for i in Articulo.articles:
+                aux = Articulo.articles[i]
+                if str(aux.getNombre()) == option:
+                    _list.append(aux)
+        _list.sort(key=lambda articulo: articulo.getPrecio(), reverse=False)
+        _a = len(_list)
+        for i in range(0,_a):
+            obj = _list[i]
+            aux1 = obj.getId()
+            aux2 = obj.getNombre()
+            aux3 = obj.getTipo()
+            aux4 = obj.getPrecio()
+            if (obj.getArrendado()) == False:
+                aux5 = 'SI'
+            elif (obj.getArrendado()) == True:
+                aux5 = 'NO'
+            aux6 = (obj.getPropietario()).getNombre()
+            Mensaje.MejoresArticulos(aux1,aux2,aux3,aux4,aux5,aux6)
+
+    def ArticuloMasDisponible(self):
+        _list = []
+        Mensaje.ImprimirKey('PorNombre')
+        name = str(input())
+        _a = len((Renta.getRentas()))
+        for i in range(0,_a):
+            aux = Renta.rentas[i]
+            if name == (aux.getArticulo()).getNombre():
+                _list.append(aux)
+        _list.sort(key=lambda articulo: articulo.getFechafin(), reverse=True)
+        _a = len(_list)
+        for i in range(0,_a):
+            obj = _list[i]
+            if obj.getIsDisponible() == True:
+                aux1 = obj.getArticulo().getId()
+                aux2 = obj.getArticulo().getNombre()
+                aux3 = obj.getArticulo().getTipo()
+                aux4 = obj.getArticulo().getPrecio()
+                aux5 = obj.getArticulo().getPropietario().getNombre()
+                Mensaje.ImprimirDisponibilidadArticulos(obj,aux1,aux2,aux3,aux4,aux5)
 
     def AgregarDatosFicticios(self):
         a1 = Articulo(666,"taladro",Run.usuario_actual)
@@ -68,22 +124,22 @@ class Run:
 
     def AgregarArticulos(self):
         opcion = input("cuantos articulos desea ingresar: ")
-        for i in range (0,int(opcion)):
-            nombre = input("nombre del articulo {0}: ".format(i+1))
-            precio = input("precio del articulo {0}: ".format(i+1))
-            paux = input("propietario del articulo {0}: ".format(i+1))
+        for i in range(0,int(opcion)):
+            nombre = input("nombre del articulo {0}: ".format(i + 1))
+            precio = input("precio del articulo {0}: ".format(i + 1))
+            paux = input("propietario del articulo {0}: ".format(i + 1))
             propietario = Usuario.BuscarUsuarioPorNombre(paux,Usuario.users)
             a1 = Articulo(str(precio),str(nombre),propietario)
             self.articulos.append(a1)
             Run.usuario_actual.articulos.append(a1)
-            print("articulo {0} ingresado correctamente".format(i+1))
+            print("articulo {0} ingresado correctamente".format(i + 1))
 
     @staticmethod
     def VerMisArticulos():
         print("**********************Estos son tus articulos: *******************************************")
         for art in Run.articulos:
             if art.getPropietario() == Run.usuario_actual:
-                print (art.toString())
+                print(art.toString())
 
     def SerArrendador(self):
             Mensaje().display_menu_registroArrendador()
@@ -91,7 +147,7 @@ class Run:
             if opcion == "1":
                 cedula = input("ingrese su cedula: ")
                 celular = input("ingrese su celular: ")
-                direccion= input("ingrese su dureccion: ")
+                direccion = input("ingrese su direccion: ")
                 Arr1 = Arrendador(Run.usuario_actual.getNombre(),Run.usuario_actual.getPassword(),int(cedula),int(celular),str(direccion))
                 Arrendador.arrendadores.append(Arr1)
                 Arr1 = Arrendatario(Run.usuario_actual.getNombre(),Run.usuario_actual.getPassword(),int(cedula),int(celular),str(direccion))
@@ -137,7 +193,7 @@ class Run:
                     Mensaje().display_menu_operaciones()
                     self.break_while_2 = 0
         else:
-             print ("No puedes publicar Rentas de articulos, registrate como Arrendador, opcion 7 ")
+             print("No puedes publicar Rentas de articulos, registrate como Arrendador, opcion 7 ")
 
     @staticmethod  # metodo de arrendador
     def VerMisArriendos():
@@ -168,7 +224,7 @@ class Run:
                     Mensaje().display_menu_operaciones()
                     self.break_while_2 = 0
         else:
-             print ("No puedes rentar articulos aun, inscribete como arrendatario, opcion 7 ")
+             print("No puedes rentar articulos aun, inscribete como arrendatario, opcion 7 ")
 
 
     def VerRentasDisponibles(self): #metodo de renta
@@ -178,7 +234,7 @@ class Run:
             print("**********lista de articulos en renta disponibles:**************")
             for renta in Renta.rentas:
                 if renta.isDisponible == True:
-                    print (renta.toString())
+                    print(renta.toString())
 
     def VerMisRentas(self): #metodo de renta
         if not Run.usuario_actual.rentas:
@@ -186,7 +242,7 @@ class Run:
         else:
             print("**********lista de mis rentas:**************")
             for renta in Run.usuario_actual.rentas:
-                    print (renta.toString())
+                    print(renta.toString())
 
 
     def Volver(self):
@@ -230,8 +286,8 @@ class Run:
                 password = input("ingrese un nombre una constraseña: ")
                 u1 = Usuario(nombre,password)
                 Usuario.users.append(u1)
-                print ("Usuario creado correctamente")
-                print ("estas son tus credenciales:")
+                print("Usuario creado correctamente")
+                print("estas son tus credenciales:")
                 print(u1.toString())
 
 

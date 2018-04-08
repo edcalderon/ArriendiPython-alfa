@@ -1,4 +1,5 @@
 import sys
+import datetime
 from Mensaje import *
 from Articulo import *
 from Comentario import *
@@ -48,14 +49,18 @@ class Renta:
          return self.arrendador
     def setPeriodo(self,periodo):
            self.periodo = periodo
+           self.setFechaini()
+           self.setFechafin(periodo)
     def getPeriodo(self):
            return self.periodo
-    def setFechaini(self,fechaini):
-           self.fechaini = fechaini
+    def setFechaini(self):
+           self.fechaini = datetime.datetime.now()
     def getFechaini(self):
            return self.fechaini
-    def setFechafin(self,fechafin):
-           self.fechafin = fechafin
+    def setFechafin(self,periodo):
+        aux = self.getFechaini()
+        fechafin = aux + datetime.timedelta(days=int(periodo))
+        self.fechafin = fechafin
     def getFechafin(self):
            return self.fechafin
     def setArrendatario(self,arrendatario):
@@ -66,3 +71,5 @@ class Renta:
          self.isDisponible = bool(valor)
     def getIsDisponible(self):
          return self.isDisponible
+    def getRentas():
+         return Renta.rentas

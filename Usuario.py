@@ -23,11 +23,11 @@ class Usuario:
 
 
     def toString(self):
-         srt = "id:" + str(self.getId())+ " nombre de usuario:" + str(self.getNombre()) + " constraseña:"+ str(self.getPassword())
+         srt = "id:" + str(self.getId()) + " nombre de usuario:" + str(self.getNombre()) + " constraseña:" + str(self.getPassword())
          return srt
 
 
-    def BuscarUsuarioPorNombre(nombre_a_buscar,list_usr = []):
+    def BuscarUsuarioPorNombre(nombre_a_buscar,list_usr=[]):
         for usr in list_usr:
             if usr.getNombre() == str(nombre_a_buscar):
                 return usr
@@ -56,7 +56,7 @@ class Usuario:
         return self.isArrendador
     def setCalificacion(self,calificacion):
         self.calificadores+=1
-        self.calificacion = int((self.calificacion+calificacion)/(self.calificadores))
+        self.calificacion = int((self.calificacion + calificacion) / (self.calificadores))
     def getCalificacion(self):
         return self.calificacion
 
@@ -70,12 +70,12 @@ class Usuario:
     def getUsuario(key):        #Retorna un usuario en especifico del diccionario
         return Usuario.usuarios[key]
     def _AllGets(self):
-        atributos=[]
-        aux1=self.getId()
-        aux2=self.getNombre()
-        aux3=self.getPassword()
-        aux4=self.getCalificacion()
-        aux5=self.getDate()
+        atributos = []
+        aux1 = self.getId()
+        aux2 = self.getNombre()
+        aux3 = self.getPassword()
+        aux4 = self.getCalificacion()
+        aux5 = self.getDate()
         atributos.append(aux1)
         atributos.append(aux2)
         atributos.append(aux3)
