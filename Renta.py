@@ -73,3 +73,18 @@ class Renta:
          return self.isDisponible
     def getRentas():
          return Renta.rentas
+    def setTiempoArriendo(self,time):
+        from Mensaje import Mensaje
+        from Run import Run
+        aux1 = datetime.datetime.now()
+        aux2 = aux1 + datetime.timedelta(days=time)
+        aux3 = self.getFechafin()
+        if aux2 > aux3:
+            Mensaje.ImprimirKey('MasTiempo')
+            #Run.Rentar(self.getArrendador().getUsuario())
+            self.avaible = False
+        elif aux2 <= aux3:
+            self.tiempo = aux2
+            self.avaible = True
+    def getTiempoArriendo(self):
+        return self.tiempo

@@ -7,6 +7,7 @@ class Mensaje:
     def AddMessages():
         Mensaje.messages.setdefault('tipoNombre','¿Desea buscar por tipo o por nombre? Oprima\n1 para tipo\n2 para nombre')
         Mensaje.messages.setdefault('nombre','Ingrese el nombre')
+        Mensaje.messages.setdefault('id','Ingrese el id')
         Mensaje.messages.setdefault('tipo','Ingrese el tipo')
         Mensaje.messages.setdefault('Nombre','Nombre: ')
         Mensaje.messages.setdefault('Tipo','Tipo: ')
@@ -17,8 +18,13 @@ class Mensaje:
         Mensaje.messages.setdefault('PorNombre','Ingrese el nombre de los articulos para los que desea ver la mayor disponibilidad de tiempo')
         Mensaje.messages.setdefault('FechaIni','Fecha Inicial: ')
         Mensaje.messages.setdefault('FechaFin','Fecha Final: ')
+        Mensaje.messages.setdefault('FechaEntrega','Fecha Entrega: ')
+        Mensaje.messages.setdefault('TiempoRestante','El tiempo restante para realizar la entrega es:')
         Mensaje.messages.setdefault('Usado','Veces usado: ')
         Mensaje.messages.setdefault('NombreUsado','Ingrese el nombre de los articulos para los que desea ver el menor uso')
+        Mensaje.messages.setdefault('dias', 'Ingrese los dias por el cual va a rentarlo')
+        Mensaje.messages.setdefault('MasTiempo', 'No puedes rentar el articulo por un tiempo mayor al que va a estar disponible')
+        Mensaje.messages.setdefault('SinRentas', 'No puedes consultar el tiempo restante de un articulo porque no tienes rentas actuales')
 
         
     def ImprimirKey(key):
@@ -33,6 +39,8 @@ class Mensaje:
             print(Mensaje.messages['FechaIni'],(datetime.datetime.ctime((Renta.getFechaini(self)))))
         elif key == 'FechaFin':
             print(Mensaje.messages['FechaFin'],(datetime.datetime.ctime((Renta.getFechafin(self)))))
+        elif key == 'FechaEntrega':
+            print(Mensaje.messages['FechaEntrega'],(datetime.datetime.ctime((Renta.getTiempoArriendo(self)))))
 
     def ImprimirDisponibilidadArticulos(self,id,nombre,tipo,precio,propietario):
         print(Mensaje.messages['ID'],id,sep='\t')
@@ -42,6 +50,12 @@ class Mensaje:
     def MenosUsos(id,nombre,tipo,precio,propietario,usado):
         print(Mensaje.messages['ID'],id,Mensaje.messages['Usado'],usado,sep='\t')
         print(Mensaje.messages['Nombre'],nombre,Mensaje.messages['Tipo'],tipo,Mensaje.messages['Precio'],precio,Mensaje.messages['Propietario'],propietario,sep='\t')
+
+    def TiempoRestante(self,queda):
+        Mensaje.ImprimirFecha(self,'FechaFin')
+        Mensaje.ImprimirFecha(self, 'FechaEntrega')
+        Mensaje.ImprimirKey('TiempoRestante')
+        print(queda)
 
     def display_menu_bienvenida(self):
         print("""
@@ -70,8 +84,9 @@ class Mensaje:
         10. Mejor precio articulos
         11. Buscar articulo con la mayor disponibilidad
         12. Articulo con menos uso
-        13. Volver Inicio.
-        14. Salir.
+        13. Tiempo restante articulo
+        14. Volver Inicio.
+        15. Salir.
         """)
 
     def display_menu_registroUsuario(self):
