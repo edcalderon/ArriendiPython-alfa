@@ -3,7 +3,11 @@ from Renta import *
 class Mensaje:
 
     messages = {}
-    
+    messages2 = {
+        'display_menu_bienvenida':'\n\tBIENVENIDO A ARRIENDIAPP\n\t  ¿Arriendo? Arrinedi!\n\n    ¿Es usted un usuario registrado?\n    1. Si\n    2. No, registrar\n '
+
+    }
+
     def AddMessages():
         Mensaje.messages.setdefault('tipoNombre','¿Desea buscar por tipo o por nombre? Oprima\n1 para tipo\n2 para nombre')
         Mensaje.messages.setdefault('nombre','Ingrese el nombre')
@@ -20,7 +24,10 @@ class Mensaje:
         Mensaje.messages.setdefault('Usado','Veces usado: ')
         Mensaje.messages.setdefault('NombreUsado','Ingrese el nombre de los articulos para los que desea ver el menor uso')
 
-        
+    @staticmethod
+    def ImprimirKey2(key):
+        print(Mensaje.messages2[key])
+    @staticmethod
     def ImprimirKey(key):
         print(Mensaje.messages[key])
 

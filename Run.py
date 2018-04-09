@@ -286,7 +286,8 @@ class Run:
         Usuario.users.append(u2)
         u2.setIsArrendador(True)          # arrendador por defecto2
         while self.break_while == 1:
-            Mensaje().display_menu_bienvenida()
+            Mensaje().ImprimirKey2('display_menu_bienvenida')  
+    #       Mensaje().display_menu_bienvenida() # me gustan mas la funcunciones xD
             opcion = input("ingrese una opcion: ")
             if opcion == "1" or opcion == "s" or opcion == "si":
                 usuario = input("ingrese el usuario: ")
