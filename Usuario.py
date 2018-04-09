@@ -82,3 +82,6 @@ class Usuario:
         atributos.append(aux4)
         atributos.append(aux5)
         return atributos
+
+    def GetAllUsuarios():
+        return Usuario.usuarios

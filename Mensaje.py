@@ -29,11 +29,15 @@ class Mensaje:
         Mensaje.messages.setdefault('dias', 'Ingrese los dias por el cual va a rentarlo')
         Mensaje.messages.setdefault('MasTiempo', 'No puedes rentar el articulo por un tiempo mayor al que va a estar disponible')
         Mensaje.messages.setdefault('SinRentas', 'No puedes consultar el tiempo restante de un articulo porque no tienes rentas actuales')
+        Mensaje.messages.setdefault('Calificar', 'Ingrese la id del usuario a calificar')
+        Mensaje.messages.setdefault('NuevaCalificacion', 'Ingrese la calificacion que le quiera dar a este usuario\nDebe ser un numero entero entre 1 y 5')
+        Mensaje.messages.setdefault('Calificar', 'Ingrese la id del usuario a calificar')
 
     @staticmethod
     def ImprimirKey2(key):
         print(Mensaje.messages2[key])
-    @staticmethod
+    
+    
     def ImprimirKey(key):
         print(Mensaje.messages[key])
 
@@ -63,6 +67,9 @@ class Mensaje:
         Mensaje.ImprimirFecha(self, 'FechaEntrega')
         Mensaje.ImprimirKey('TiempoRestante')
         print(queda)
+
+    def IdNombre(id,nombre):
+        print(Mensaje.messages['ID'],id,Mensaje.messages['Nombre'],nombre, sep='\t')
 
     def display_menu_bienvenida(self):
         print("""

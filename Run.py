@@ -33,9 +33,21 @@ class Run:
         "11": self.ArticuloMasDisponible,
         "12": self.MenosUso,
         "13": self.TiempoRestanteArticulo,
-        "14": self.Volver,
-        "15": self.Salir
+        "14": self.CalificarArrendador,
+        "15": self.Volver,
+        "16": self.Salir
         }
+
+    def CalificarArrendador(self):
+        _Users={}
+        _Users=Usuario.GetAllUsuarios()
+        for i in _Users:
+            obj=_Users[i]
+            aux1=obj.id
+            aux2=obj.nombre
+            Mensaje.IdNombre(aux1,aux2)
+        Mensaje.ImprimirKey('Calificar')
+        _id=int(input())
 
     def TiempoRestanteArticulo(self):
         _list = []
@@ -141,6 +153,14 @@ class Run:
         Run.articulos.append(a2)
         Run.usuario_actual.articulos.append(a1)
         Run.usuario_actual.articulos.append(a1)
+        rent1 = Renta(a1,Run.usuario_actual,5)
+        Renta.rentas.append(rent1)
+        rent1.setTiempoArriendo(3)
+        rent1.setArrendatario(Usuario.BuscarUsuarioPorNombre('arriendi2',Usuario.users))
+        rent1.isDisponible = False
+        Run.usuario_actual.rentas.append(rent1)
+
+
         print("Datos ingresados correctamente")
 
     def VerArticulos(self):
