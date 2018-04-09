@@ -1,4 +1,5 @@
 import sys
+import datetime
 from Mensaje import *
 from Articulo import *
 from Comentario import *
@@ -28,24 +29,44 @@ class Run:
         "7": self.SerArrendador,
         "8": self.PonerEnRenta,
         "9": self.Rentar,
-        "13": self.Volver,
-        "14": self.Salir,
         "10": self.MejorPrecioArticulo,
         "11": self.ArticuloMasDisponible,
-        "12": self.MenosUso
+        "12": self.MenosUso,
+        "13": self.TiempoRestanteArticulo,
+        "14": self.Volver,
+        "15": self.Salir
         }
 
+    def TiempoRestanteArticulo(self):
+        _list = []
+        for i in Run.usuario_actual.rentas:
+            _list.append(i)
+        if len(_list) == 0:
+            Mensaje.ImprimirKey('SinRentas')
+        elif len(_list) > 0:
+            Run.VerMisRentas(self)
+            Mensaje.ImprimirKey('id')
+            _id = int(input())
+            _a = int(len(_list))
+            for i in range(0,_a):
+                obj = _list[i]
+                if int(obj.getId()) == _id:
+                    aux1 = obj.getTiempoArriendo()
+                    aux2 = datetime.datetime.now()
+                    aux3 = aux1 - aux2
+                    Mensaje.TiempoRestante(obj,aux3)
+
     def MenosUso(self):
-        _list=[]
+        _list = []
         Mensaje.ImprimirKey('NombreUsado')
-        _name=str(input())
+        _name = str(input())
         for i in Articulo.articles:
             aux = Articulo.articles[i]
-            if str(aux.getNombre())==_name:
-                if aux.getArrendado()==False:
+            if str(aux.getNombre()) == _name:
+                if aux.getArrendado() == False:
                     _list.append(aux)
         _list.sort(key=lambda articulo: articulo.getVecesUsado(), reverse=False)
-        _a=len(_list)
+        _a = len(_list)
         for i in range(0,_a):
             obj = _list[i]
             aux1 = obj.getId()
@@ -236,13 +257,19 @@ class Run:
                  if opcion == "2":
                         print("")
                         id_renta = input("ingrese el ID de la renta deseada: ")
+                        Mensaje.ImprimirKey('dias')
+                        _time = int(input())
                         rent1 = Renta.BuscarRentaPorId(id_renta,Renta.rentas)
-                        rent1.setArrendatario(Run.usuario_actual)
-                        rent1.isDisponible = False
-                        Run.usuario_actual.rentas.append(rent1)
-                        print("renta concretada")
-                        rent1.getArticulo().setVecesUsado()
-                        rent1.getArticulo().setArrendado(True)
+                        rent1.setTiempoArriendo(_time)
+                        if rent1.avaible == True:
+                            rent1.setArrendatario(Run.usuario_actual)
+                            rent1.isDisponible = False
+                            Run.usuario_actual.rentas.append(rent1)
+                            rent1.getArticulo().setVecesUsado()
+                            rent1.getArticulo().setArrendado(True)
+                            print("renta concretada")
+                        elif rent1.avaible == False:
+                            Run.Rentar(self)
                  if opcion == "3":
                      Run().VerMisRentas()
                  if opcion == "4":
