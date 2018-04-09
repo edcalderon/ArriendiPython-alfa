@@ -230,25 +230,31 @@ class Run:
                  if Run.usuario_actual.articulos:
                      if opcion == "1":
                             Run().VerMisArticulos()
-                            print("")
-                            id_art = input("ingrese el ID del articulo a arrendar: ")
-                            art = Articulo.BuscarArticuloPorId(id_art,Run.articulos)
-                            periodo = input("ingrese el periodo minimo que desea arrendar el articulo {0} en dias:".format(art.getNombre().upper()))
-                            rent1 = Renta(art,Run.usuario_actual,periodo)
-                            Renta.rentas.append(rent1)
-                            Run.usuario_actual.rentas.append(rent1)
-                            print("renta añadida:")
-                            print(rent1.toString())
+                            if Run().VerMisArticulos():
+                                print("")
+                                id_art = input("ingrese el ID del articulo a arrendar: ")
+                                art = Articulo.BuscarArticuloPorId(id_art,Run.articulos)
+                                periodo = input("ingrese el periodo minimo que desea arrendar el articulo {0} en dias:".format(art.getNombre().upper()))
+                                rent1 = Renta(art,Run.usuario_actual,periodo)
+                                Renta.rentas.append(rent1)
+                                Run.usuario_actual.rentas.append(rent1)
+                                print("renta añadida:")
+                                print(rent1.toString())
+                            else:
+                                print("aun no publicas articulos, volver, opcion 5")
                      if opcion == "2":
-                            Run().VerMisArriendos()
-                            print("")
-                            id_renta = input("ingrese el ID de la renta a cancelar: ")
-                            rent1 = Renta.BuscarRentaPorId(id_renta,Renta.rentas)
-                            print(rent1)
-                            rent1.setIsDisponible(False)
-                            rent1.getArticulo().setArrendado(False)
-                            print("renta cambiada")
-                            print(rent1.toString())
+                            if Run().VerMisArticulos():
+                                Run().VerMisArriendos()
+                                print("")
+                                id_renta = input("ingrese el ID de la renta a cancelar: ")
+                                rent1 = Renta.BuscarRentaPorId(id_renta,Renta.rentas)
+                                print(rent1)
+                                rent1.setIsDisponible(False)
+                                rent1.getArticulo().setArrendado(False)
+                                print("renta cambiada")
+                                print(rent1.toString())
+                            else:
+                                print("aun no publicas articulos en renta, volver, opcion Rentar")
                      if opcion == "3":
                             Run().VerMisArriendos()
                  else:
@@ -275,21 +281,25 @@ class Run:
                  if opcion == "1":
                         Run().VerRentasDisponibles()
                  if opcion == "2":
-                        print("")
-                        id_renta = input("ingrese el ID de la renta deseada: ")
-                        Mensaje.ImprimirKey('dias')
-                        _time = int(input())
-                        rent1 = Renta.BuscarRentaPorId(id_renta,Renta.rentas)
-                        rent1.setTiempoArriendo(_time)
-                        if rent1.avaible == True:
-                            rent1.setArrendatario(Run.usuario_actual)
-                            rent1.isDisponible = False
-                            Run.usuario_actual.rentas.append(rent1)
-                            rent1.getArticulo().setVecesUsado()
-                            rent1.getArticulo().setArrendado(True)
-                            print("renta concretada")
-                        elif rent1.avaible == False:
-                            Run.Rentar(self)
+                        if Run().VerRentasDisponibles():
+                            print("")
+                            Run().VerRentasDisponibles()
+                            id_renta = input("ingrese el ID de la renta deseada: ")
+                            Mensaje.ImprimirKey('dias')
+                            _time = int(input())
+                            rent1 = Renta.BuscarRentaPorId(id_renta,Renta.rentas)
+                            rent1.setTiempoArriendo(_time)
+                            if rent1.avaible == True:
+                                rent1.setArrendatario(Run.usuario_actual)
+                                rent1.isDisponible = False
+                                Run.usuario_actual.rentas.append(rent1)
+                                rent1.getArticulo().setVecesUsado()
+                                rent1.getArticulo().setArrendado(True)
+                                print("renta concretada")
+                            elif rent1.avaible == False:
+                                Run.Rentar(self)
+                        else:
+                            print("aun no hay rentas disponibles")
                  if opcion == "3":
                      Run().VerMisRentas()
                  if opcion == "4":
@@ -333,7 +343,7 @@ class Run:
         Usuario.users.append(u2)
         u2.setIsArrendador(True)          # arrendador por defecto2
         while self.break_while == 1:
-            Mensaje().ImprimirKey2('display_menu_bienvenida')  
+            Mensaje().ImprimirKey2('display_menu_bienvenida')
     #       Mensaje().display_menu_bienvenida() # me gustan mas la funcunciones xD
             opcion = input("ingrese una opcion: ")
             if opcion == "1" or opcion == "s" or opcion == "si":

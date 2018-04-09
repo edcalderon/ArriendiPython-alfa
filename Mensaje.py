@@ -36,8 +36,8 @@ class Mensaje:
     @staticmethod
     def ImprimirKey2(key):
         print(Mensaje.messages2[key])
-    
-    
+
+
     def ImprimirKey(key):
         print(Mensaje.messages[key])
 
