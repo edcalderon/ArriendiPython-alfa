@@ -72,3 +72,25 @@ class Articulo:
         self.veces_usado+=1
     def getVecesUsado(self):
         return self.veces_usado
+
+    def MenosUso():
+        from Mensaje import Mensaje
+        _list = []
+        Mensaje.ImprimirKey('NombreUsado')
+        _name = str(input())
+        for i in Articulo.articles:
+            aux = Articulo.articles[i]
+            if str(aux.getNombre()) == _name:
+                if aux.getArrendado() == False:
+                    _list.append(aux)
+        _list.sort(key=lambda articulo: articulo.getVecesUsado(), reverse=False)
+        _a = len(_list)
+        for i in range(0,_a):
+            obj = _list[i]
+            aux1 = obj.getId()
+            aux2 = obj.getNombre()
+            aux3 = obj.getTipo()
+            aux4 = obj.getPrecio()
+            aux5 = obj.getPropietario().getNombre()
+            aux6 = obj.getVecesUsado()
+            Mensaje.MenosUsos(aux1,aux2,aux3,aux4,aux5,aux6)

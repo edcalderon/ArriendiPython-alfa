@@ -32,12 +32,12 @@ class Run:
         "9": self.Rentar,
         "10": self.MejorPrecioArticulo,
         "11": self.ArticuloMasDisponible,
-        "12": self.MenosUso,
+        "12": Articulo.MenosUso,
         "13": self.TiempoRestanteArticulo,
         "14": self.CalificarArrendador,
         "15": self.CalificarArrendatario,
-        "16": self.mejoresArrendatarios,
-        "17": self.PeoresArrendadores,
+        "16": Arrendatario.mejoresArrendatarios,
+        "17": Arrendador.PeoresArrendadores,
         "18": self.Volver,
         "19": self.Salir
 
@@ -239,40 +239,6 @@ class Run:
         else:
            return None
 
-    def mejoresArrendatarios(self):     #Retorna una lista con los mejores arrendatarios de manera descendente
-        Mensaje.ImprimirKey('MejoresArrendadtarios')
-        _Users = {}
-        _arrendatarios=[]
-        _Users=Usuario.GetAllUsuarios()
-        for i in _Users:
-            obj=_Users[i]
-            if obj.isArrendatario==True:
-                _arrendatarios.append(obj)
-        _arrendatarios.sort(key=lambda arrendatario: arrendatario.calificacion, reverse=True)     #Ordena por el atributo calificacion
-        for i in range(0,len(_arrendatarios)):
-            obj = _arrendatarios[i]
-            aux1=obj.getId()
-            aux2 = obj.getNombre()
-            aux3 = obj.getCalificacion()
-            Mensaje.IdNombreCalificacion(aux1,aux2,aux3)
-
-    def PeoresArrendadores(self):     #Retorna una lista con los peores arrendadores
-        Mensaje.ImprimirKey('PeoresArrendadores')
-        _Users = {}
-        _arrendadores=[]
-        _Users=Usuario.GetAllUsuarios()
-        for i in _Users:
-            obj=_Users[i]
-            if obj.isArrendador==True:
-                _arrendadores.append(obj)
-        _arrendadores.sort(key=lambda arrendador: arrendador.calificacion, reverse=False)     #Ordena por el atributo calificacion
-        for i in range(0,len(_arrendadores)):
-            obj = _arrendadores[i]
-            aux1=obj.getId()
-            aux2 = obj.getNombre()
-            aux3 = obj.getCalificacion()
-            Mensaje.IdNombreCalificacion(aux1,aux2,aux3)
-
     def CalificarArrendador(self):
         _Users={}
         _Users=Usuario.GetAllUsuarios()
@@ -334,26 +300,6 @@ class Run:
                     aux3 = aux1 - aux2
                     Mensaje.TiempoRestante(obj,aux3)
 
-    def MenosUso(self):
-        _list = []
-        Mensaje.ImprimirKey('NombreUsado')
-        _name = str(input())
-        for i in Articulo.articles:
-            aux = Articulo.articles[i]
-            if str(aux.getNombre()) == _name:
-                if aux.getArrendado() == False:
-                    _list.append(aux)
-        _list.sort(key=lambda articulo: articulo.getVecesUsado(), reverse=False)
-        _a = len(_list)
-        for i in range(0,_a):
-            obj = _list[i]
-            aux1 = obj.getId()
-            aux2 = obj.getNombre()
-            aux3 = obj.getTipo()
-            aux4 = obj.getPrecio()
-            aux5 = obj.getPropietario().getNombre()
-            aux6 = obj.getVecesUsado()
-            Mensaje.MenosUsos(aux1,aux2,aux3,aux4,aux5,aux6)
 
     def MejorPrecioArticulo(self):
         _list = []

@@ -35,14 +35,20 @@ class Arrendador(Usuario):
             if isinstance(Usuario.getUsuario(i),Arrendador):
                 Arrendador.arrendadores.append(Usuario.getUsuario(i))
 
-    def peoresArrendadores():      #Retorna una lista con los peores arrendadres
-        listado = []
-        Arrendador._getArrendadores()
-        Arrendador._Arrendadores.sort(key=lambda arrendador: arrendador.calificacion)      #Ordena por el atributo calificacion
-        for i in range(0,len(Arrendador.arrendadores)):
-            obj = Arrendador.arrendadores[i]
-            aux1 = obj.getNombre()
-            aux2 = obj.getCalificacion()
-            listado.append(aux1)
-            listado.append(aux2)
-        return listado
+    def PeoresArrendadores():     #Retorna una lista con los peores arrendadores
+        from Mensaje import Mensaje
+        Mensaje.ImprimirKey('PeoresArrendadores')
+        _Users = {}
+        _arrendadores=[]
+        _Users=Usuario.GetAllUsuarios()
+        for i in _Users:
+            obj=_Users[i]
+            if obj.isArrendador==True:
+                _arrendadores.append(obj)
+        _arrendadores.sort(key=lambda arrendador: arrendador.calificacion, reverse=False)     #Ordena por el atributo calificacion
+        for i in range(0,len(_arrendadores)):
+            obj = _arrendadores[i]
+            aux1=obj.getId()
+            aux2 = obj.getNombre()
+            aux3 = obj.getCalificacion()
+            Mensaje.IdNombreCalificacion(aux1,aux2,aux3)
