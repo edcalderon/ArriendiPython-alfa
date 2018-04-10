@@ -4,7 +4,7 @@ from Mensaje import *
 from Articulo import *
 from Comentario import *
 from Renta import *
-#from Conexion import *
+from Conexion import *
 from Usuario import *
 from Arrendador import *
 from Arrendatario import *
@@ -283,12 +283,12 @@ class Run:
                 cedula = input("ingrese su cedula: ")
                 celular = input("ingrese su celular: ")
                 direccion = input("ingrese su direccion: ")
-                Arr1 = Arrendador(Run.usuario_actual.getNombre(),Run.usuario_actual.getPassword(),int(cedula),int(celular),str(direccion))
+                Arr1 = Arrendador(Run.usuario_actual.getId(),Run.usuario_actual.getNombre(),Run.usuario_actual.getPassword(),int(cedula),int(celular),str(direccion))
                 Arrendador.arrendadores.append(Arr1)
-                Arr1 = Arrendatario(Run.usuario_actual.getNombre(),Run.usuario_actual.getPassword(),int(cedula),int(celular),str(direccion))
-                Arrendatario.arrendatarios.append(Arr1)
-                Run.usuario_actual.setIsArrendador(True)
-                print("Arrendador {0} ingresado correctamente.".format(Arr1.getNombre().upper()))
+                #Arr1 = Arrendatario(Run.usuario_actual.getNombre(),Run.usuario_actual.getPassword(),int(cedula),int(celular),str(direccion))
+                #Arrendatario.arrendatarios.append(Arr1)
+                #Run.usuario_actual.setIsArrendador(True)
+                #print("Arrendador {0} ingresado correctamente.".format(Arr1.getNombre().upper()))
                 print(Arr1.toString())
             if opcion == "2":
                 Mensaje().display_menu_operaciones()
