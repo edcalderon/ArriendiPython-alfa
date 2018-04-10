@@ -35,6 +35,7 @@ class Mensaje:
         Mensaje.messages.setdefault('Calificadores','Numero de calificaciones: ')
         Mensaje.messages.setdefault('NewCalificacion','Nueva calificacion: ')
         Mensaje.messages.setdefault('MejoresArrendadtarios', 'Lista de los arrendatarios')
+        Mensaje.messages.setdefault('PeoresArrendadores', 'Lista de los arrendadores')
 
     @staticmethod
     def ImprimirKey2(key):
@@ -108,8 +109,9 @@ class Mensaje:
         14. Calificar Arrendador
         15. Calificar Arrendatario
         16: Mejores arrendatarios
-        17. Volver Inicio.
-        18. Salir.
+        17: Peores arrendadores
+        18. Volver Inicio.
+        19. Salir.
         """)
 
     def display_menu_registroUsuario(self):

@@ -36,8 +36,9 @@ class Run:
         "14": self.CalificarArrendador,
         "15": self.CalificarArrendatario,
         "16": self.mejoresArrendatarios,
-        "17": self.Volver,
-        "18": self.Salir
+        "17": self.PeoresArrendadores,
+        "18": self.Volver,
+        "19": self.Salir
         }
 
     def mejoresArrendatarios(self):     #Retorna una lista con los mejores arrendatarios de manera descendente
@@ -52,6 +53,23 @@ class Run:
         _arrendatarios.sort(key=lambda arrendatario: arrendatario.calificacion, reverse=True)     #Ordena por el atributo calificacion
         for i in range(0,len(_arrendatarios)):
             obj = _arrendatarios[i]
+            aux1=obj.getId()
+            aux2 = obj.getNombre()
+            aux3 = obj.getCalificacion()
+            Mensaje.IdNombreCalificacion(aux1,aux2,aux3)
+
+    def PeoresArrendadores(self):     #Retorna una lista con los peores arrendadores
+        Mensaje.ImprimirKey('PeoresArrendadores')
+        _Users = {}
+        _arrendadores=[]
+        _Users=Usuario.GetAllUsuarios()
+        for i in _Users:
+            obj=_Users[i]
+            if obj.isArrendador==True:
+                _arrendadores.append(obj)
+        _arrendadores.sort(key=lambda arrendador: arrendador.calificacion, reverse=False)     #Ordena por el atributo calificacion
+        for i in range(0,len(_arrendadores)):
+            obj = _arrendadores[i]
             aux1=obj.getId()
             aux2 = obj.getNombre()
             aux3 = obj.getCalificacion()
