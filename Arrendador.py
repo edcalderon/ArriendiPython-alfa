@@ -1,16 +1,20 @@
 from Usuario import *
 from Mensaje import *
 from Renta import *
+from Conexion import *
 
 class Arrendador(Usuario):
 
     arrendadores = []     #Lista de objetos
 
-    def __init__(self,nombre,_password,cedula,celular,direccion):
-        Usuario.__init__(self,nombre,_password)
+    def __init__(self,id_usuarios,nombre,_password,cedula,celular,direccion):
+        #se esta creando otro objeto al iniciar este costructor
+        #Usuario.__init__(self,nombre,_password)
         self.setCedula(cedula)
         self.setCelular(celular)
         self.setDireccion(direccion)
+
+        GuardarArrendador(id_usuarios,nombre,_password,True,cedula,celular,direccion)
 
     def toString(self):
         return "[Cedula:%s, Celular:%s, Dirreción:%s]" % (str(self.getCedula()),self.getCelular(),self.getDireccion())
