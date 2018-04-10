@@ -8,7 +8,8 @@ class Arrendatario(Usuario):
     arrendatarios = []     #Lista de objetos
 
     def __init__(self,nombre,_password,cedula,celular,direccion):
-          Usuario.__init__(self,nombre,_password)
+          #se esta creando otro objeto con este constructor
+          #Usuario.__init__(self,nombre,_password)
           self.setCedula(cedula)
           self.setCelular(celular)
           self.setDireccion(direccion)
