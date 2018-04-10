@@ -59,7 +59,7 @@ class Run:
         Run.usuario_actual.rentas.append(rent1)
         Conexion.cargarUsuarios()
         Conexion.cargarArticulos()
-        Conexion.cargarRentas()
+#        Conexion.cargarRentas()
 
         print("Datos ingresados correctamente")
 

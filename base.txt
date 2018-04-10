@@ -1,4 +1,0 @@
-434,haha,4244
-articulo,1,666,taladro
-articulo,2,999,papa
-usuario,454333,Nelson,xhpntzdrn

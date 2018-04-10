@@ -40,7 +40,7 @@ class Conexion:
 		file = open("rentas.txt","r")
 		for line in file:
 			x = line.split(',')
-			articulo = Articulo.BuscarArticuloPorNombre(x[0],Run.articulos)
+			articulo = Articulo.BuscarArticuloPorNombre(str(x[0]),Run.articulos)
 			arrendador = Usuario.BuscarUsuarioPorNombre(x[1].strip(),Usuario.users)
 			arrendatario = Usuario.BuscarUsuarioPorNombre(x[3].strip(),Usuario.users)
 			renta = Renta(articulo,arrendador,x[2],arrendatario)
