@@ -10,8 +10,8 @@ class Usuario:
     calificadores = 1     #contador
 
     def __init__(self,nombre,_password):
-            self._setId(Usuario.id_usuarios)
             self.setNombre(nombre)
+            self._setId(Usuario.id_usuarios)
             self.setPassword(_password)
             self.setDate()
             self.setIsArrendador(False)
@@ -35,7 +35,10 @@ class Usuario:
 
     def _setId(self,id_usuarios):
         Usuario.id_usuarios+=1
-        self.id = Usuario.id_usuarios
+        if Usuario.BuscarUsuarioPorNombre(self.getNombre()):
+            self.id = usr.getId()
+        else:
+            self.id = Usuario.id_usuarios
     def getId(self):
         return self.id
     def setNombre(self,nombre):

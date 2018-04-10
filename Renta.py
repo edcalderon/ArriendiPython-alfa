@@ -28,7 +28,7 @@ class Renta:
     def toString(self):
         if self.getIsDisponible() == False:
             Renta.disponible = "no disponibles"
-        if self.getArrendatario():
+        if self.getArrendatario() != "":
             arrendatario = self.getArrendatario().getNombre()
         if self.getArrendatario() == "":
             arrendatario = "none"
@@ -74,9 +74,9 @@ class Renta:
     def getRentas():
          return Renta.rentas
     def setTiempoArriendo(self,time):
-#        from Mensaje import Mensaje
+        from Mensaje import Mensaje
         aux1 = datetime.datetime.now()
-        aux2 = aux1 + datetime.timedelta(days=time)
+        aux2 = aux1 - datetime.timedelta(days=time)
         aux3 = self.getFechafin()
         if aux2 > aux3:
             Mensaje.ImprimirKey('MasTiempo')

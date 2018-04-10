@@ -99,8 +99,9 @@ class Mensaje:
         11. Buscar articulo con la mayor disponibilidad
         12. Articulo con menos uso
         13. Tiempo restante articulo
-        14. Volver Inicio.
-        15. Salir.
+        14. CalificarArrendador
+        15. Volver Inicio.
+        16. Salir.
         """)
 
     def display_menu_registroUsuario(self):

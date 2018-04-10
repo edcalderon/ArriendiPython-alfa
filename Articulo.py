@@ -33,6 +33,11 @@ class Articulo:
         for art in list_art:
             if art.getId() == int(id_a_buscar):
                 return art
+    @staticmethod
+    def BuscarArticuloPorNombre(nombre_a_buscar,list_art=[]):
+        for art in list_art:
+            if art.getNombre() == nombre_a_buscar:
+                return art
 
     def _setId(self,id_articulos):
         Articulo.id_articulos+=1
