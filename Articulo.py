@@ -1,6 +1,7 @@
 from Comentario import *
 import time
 from Usuario import *
+from Conexion import *
 
 class Articulo:
 
@@ -21,6 +22,8 @@ class Articulo:
         self.setPublicado(True)
         self.setIsArrendado(False)
         Articulo.AddArticles(self)
+        
+        GuardarArticulo(self.getId(),precio,nombre,propietario.getNombre())
 
     def AddArticles(self):
         Articulo.articles.setdefault(self.getId,self)
