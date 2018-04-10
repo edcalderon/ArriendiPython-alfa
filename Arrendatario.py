@@ -8,6 +8,7 @@ class Arrendatario(Usuario):
     arrendatarios = []     #Lista de objetos
 
     def __init__(self,nombre,_password,cedula,celular,direccion):
+          #se esta creando otro nuevo usuario con distindo id al iniciar este costructor
           #Usuario.__init__(self,nombre,_password)
           self.setCedula(cedula)
           self.setCelular(celular)
