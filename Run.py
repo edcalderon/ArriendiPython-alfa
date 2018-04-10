@@ -282,7 +282,7 @@ class Run:
                                     rent1 = Renta.BuscarRentaPorId(id_renta,Renta.rentas)
                                     print(rent1)
                                     rent1.setIsDisponible(False)
-                                    rent1.getArticulo().setArrendado(False)
+                                    rent1.getArticulo().setIsArrendado(False)
                                     print("renta cambiada")
                                     print(rent1.toString())
                           elif Run().VerMisRentas() == None:
@@ -316,9 +316,8 @@ class Run:
                  if opcion == "1":
                         Run().VerRentasDisponibles()
                  if opcion == "2":
-                        if Run().VerRentasDisponibles():
+                        if Run().VerRentasDisponibles() == True:
                             print("")
-                            Run().VerRentasDisponibles()
                             id_renta = input("ingrese el ID de la renta deseada: ")
                             Mensaje.ImprimirKey('dias')
                             _time = int(input())
@@ -329,7 +328,7 @@ class Run:
                                 rent1.isDisponible = False
                                 Run.usuario_actual.rentas.append(rent1)
                                 rent1.getArticulo().setVecesUsado()
-                                rent1.getArticulo().setArrendado(True)
+                                rent1.getArticulo().setIsArrendado(True)
                                 print("renta concretada")
                             elif rent1.avaible == False:
                                 Run.Rentar(self)
@@ -353,7 +352,7 @@ class Run:
             for renta in Renta.rentas:
                 if renta.isDisponible == True:
                     print(renta.toString())
-
+            return True
     def VerMisRentas(self): #metodo de renta
         if Run.usuario_actual.rentas:
             print("**********lista de mis rentas:**************")

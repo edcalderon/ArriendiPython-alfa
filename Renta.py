@@ -26,13 +26,13 @@ class Renta:
                 return renta
 
     def toString(self):
-        if self.getIsDisponible() == False:
-            Renta.disponible = "no disponibles"
+    #    if self.getIsDisponible() == False:
+    #        Renta.disponible = "no disponible"
         if self.getArrendatario():
             arrendatario = self.getArrendatario().getNombre()
         if self.getArrendatario() == "":
             arrendatario = "none"
-        return "[ID:%s, Articulo:%s, Periodo(Dias):%s, Precio(xDia):%s, Estado:%s, Arrendador:%s, Arrendatario:%s]" % (str(self.getId()),self.getArticulo().getNombre(),self.getPeriodo(),self.getArticulo().getPrecio(),Renta.disponible,self.getArrendador().getNombre(),arrendatario)
+        return "[ID:%s, Articulo:%s, Periodo(Dias):%s, Precio(xDia):%s, Disponible:%s, Arrendador:%s, Arrendatario:%s]" % (str(self.getId()),self.getArticulo().getNombre(),self.getPeriodo(),self.getArticulo().getPrecio(),str(self.getIsDisponible()),self.getArrendador().getNombre(),arrendatario)
 
     def setId(self):
         Renta.id_rentas+=1
@@ -74,9 +74,9 @@ class Renta:
     def getRentas():
          return Renta.rentas
     def setTiempoArriendo(self,time):
-#        from Mensaje import Mensaje
+        from Mensaje import Mensaje
         aux1 = datetime.datetime.now()
-        aux2 = aux1 + datetime.timedelta(days=time)
+        aux2 = aux1 - datetime.timedelta(days=time)
         aux3 = self.getFechafin()
         if aux2 > aux3:
             Mensaje.ImprimirKey('MasTiempo')

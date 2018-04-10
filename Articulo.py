@@ -19,7 +19,7 @@ class Articulo:
         self.setDate()
         self.setTipo('NN')
         self.setPublicado(True)
-        self.setArrendado(False)
+        self.setIsArrendado(False)
         Articulo.AddArticles(self)
 
     def AddArticles(self):
@@ -59,10 +59,10 @@ class Articulo:
         return self.tipo
     def setPublicado(self,estado):
         self.publicado = estado
-    def setArrendado(self,estado):
-        self.arredado = estado
+    def setIsArrendado(self,estado):
+        self.isArredado = bool(estado)
     def getArrendado(self):
-        return self.arredado
+        return self.isArredado
     def setVecesUsado(self):
         self.veces_usado+=1
     def getVecesUsado(self):
