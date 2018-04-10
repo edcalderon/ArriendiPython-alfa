@@ -199,10 +199,14 @@ class Run:
 
     @staticmethod
     def VerMisArticulos():
-        print("**********************Estos son tus articulos: *******************************************")
-        for art in Run.articulos:
-            if art.getPropietario() == Run.usuario_actual:
-                print(art.toString())
+        if Run.articulos:
+            print("**********************Estos son tus articulos: *******************************************")
+            for art in Run.articulos:
+                if art.getPropietario() == Run.usuario_actual:
+                    print(art.toString())
+            return True
+        else:
+            return None
 
     def SerArrendador(self):
             Mensaje().display_menu_registroArrendador()
@@ -229,31 +233,29 @@ class Run:
                  opcion = input("ingrese una opcion: ")
                  if Run.usuario_actual.articulos:
                      if opcion == "1":
-                            Run().VerMisArticulos()
-                            if Run().VerMisArticulos():
-                                print("")
-                                id_art = input("ingrese el ID del articulo a arrendar: ")
-                                art = Articulo.BuscarArticuloPorId(id_art,Run.articulos)
-                                periodo = input("ingrese el periodo minimo que desea arrendar el articulo {0} en dias:".format(art.getNombre().upper()))
-                                rent1 = Renta(art,Run.usuario_actual,periodo)
-                                Renta.rentas.append(rent1)
-                                Run.usuario_actual.rentas.append(rent1)
-                                print("renta añadida:")
-                                print(rent1.toString())
-                            else:
-                                print("aun no publicas articulos, volver, opcion 5")
+                            if Run().VerMisArticulos() == True:
+                                    print("")
+                                    id_art = input("ingrese el ID del articulo a arrendar: ")
+                                    art = Articulo.BuscarArticuloPorId(id_art,Run.articulos)
+                                    periodo = input("ingrese el periodo minimo que desea arrendar el articulo {0} en dias:".format(art.getNombre().upper()))
+                                    rent1 = Renta(art,Run.usuario_actual,periodo)
+                                    Renta.rentas.append(rent1)
+                                    Run.usuario_actual.rentas.append(rent1)
+                                    print("renta añadida:")
+                                    print(rent1.toString())
+                            elif Run().VerMisArticulos() == None:
+                                print("aun no has publicado articulos, volver, opcion Agregar articulos")
                      if opcion == "2":
-                            if Run().VerMisArticulos():
-                                Run().VerMisArriendos()
-                                print("")
-                                id_renta = input("ingrese el ID de la renta a cancelar: ")
-                                rent1 = Renta.BuscarRentaPorId(id_renta,Renta.rentas)
-                                print(rent1)
-                                rent1.setIsDisponible(False)
-                                rent1.getArticulo().setArrendado(False)
-                                print("renta cambiada")
-                                print(rent1.toString())
-                            else:
+                          if Run().VerMisRentas() == True:
+                                    print("")
+                                    id_renta = input("ingrese el ID de la renta a cancelar: ")
+                                    rent1 = Renta.BuscarRentaPorId(id_renta,Renta.rentas)
+                                    print(rent1)
+                                    rent1.setIsDisponible(False)
+                                    rent1.getArticulo().setArrendado(False)
+                                    print("renta cambiada")
+                                    print(rent1.toString())
+                          elif Run().VerMisRentas() == None:
                                 print("aun no publicas articulos en renta, volver, opcion Rentar")
                      if opcion == "3":
                             Run().VerMisArriendos()
@@ -267,10 +269,13 @@ class Run:
 
     @staticmethod  # metodo de arrendador
     def VerMisArriendos():
-        print("Tienes las siguientes publicaciones de arriendo:")
-        for renta in Renta.rentas:
-            if renta.getArrendador() == Run.usuario_actual:
-                print(renta.toString())
+        if Renta.rentas:
+            print("Tienes las siguientes publicaciones de arriendo:")
+            for renta in Renta.rentas:
+                if renta.getArrendador() == Run.usuario_actual:
+                    print(renta.toString())
+        else:
+            return None
 
     def Rentar(self):
         self.break_while_2 = 1
@@ -312,6 +317,7 @@ class Run:
     def VerRentasDisponibles(self): #metodo de renta
         if not Renta.rentas:
             print("No hay rentas aun, pon en renta un articulo, opcion 8")
+            return None
         else:
             print("**********lista de articulos en renta disponibles:**************")
             for renta in Renta.rentas:
@@ -319,13 +325,13 @@ class Run:
                     print(renta.toString())
 
     def VerMisRentas(self): #metodo de renta
-        if not Run.usuario_actual.rentas:
-            print("No tienes rentas aun, pon en renta un articulo o renta uno, opcion 8 o 9")
-        else:
+        if Run.usuario_actual.rentas:
             print("**********lista de mis rentas:**************")
             for renta in Run.usuario_actual.rentas:
                     print(renta.toString())
-
+            return True
+        else:
+           return None
 
     def Volver(self):
         Run().run()
