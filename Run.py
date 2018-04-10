@@ -35,9 +35,27 @@ class Run:
         "13": self.TiempoRestanteArticulo,
         "14": self.CalificarArrendador,
         "15": self.CalificarArrendatario,
-        "16": self.Volver,
-        "17": self.Salir
+        "16": self.mejoresArrendatarios,
+        "17": self.Volver,
+        "18": self.Salir
         }
+
+    def mejoresArrendatarios(self):     #Retorna una lista con los mejores arrendatarios de manera descendente
+        Mensaje.ImprimirKey('MejoresArrendadtarios')
+        _Users = {}
+        _arrendatarios=[]
+        _Users=Usuario.GetAllUsuarios()
+        for i in _Users:
+            obj=_Users[i]
+            if obj.isArrendatario==True:
+                _arrendatarios.append(obj)
+        _arrendatarios.sort(key=lambda arrendatario: arrendatario.calificacion, reverse=True)     #Ordena por el atributo calificacion
+        for i in range(0,len(_arrendatarios)):
+            obj = _arrendatarios[i]
+            aux1=obj.getId()
+            aux2 = obj.getNombre()
+            aux3 = obj.getCalificacion()
+            Mensaje.IdNombreCalificacion(aux1,aux2,aux3)
 
     def CalificarArrendador(self):
         _Users={}
@@ -47,7 +65,8 @@ class Run:
             if obj.isArrendador==True:
                 aux1=obj.id
                 aux2=obj.nombre
-                Mensaje.IdNombre(aux1,aux2)
+                aux3=obj.calificacion
+                Mensaje.IdNombreCalificacion(aux1,aux2,aux3)
         Mensaje.ImprimirKey('Calificar')
         _id=int(input())
         _user=Usuario.getUsuario(_id)
@@ -67,7 +86,8 @@ class Run:
             if obj.isArrendatario==True:
                 aux1=obj.id
                 aux2=obj.nombre
-                Mensaje.IdNombre(aux1,aux2)
+                aux3=obj.calificacion
+                Mensaje.IdNombreCalificacion(aux1,aux2,aux3)
         Mensaje.ImprimirKey('Calificar')
         _id=int(input())
         _user=Usuario.getUsuario(_id)

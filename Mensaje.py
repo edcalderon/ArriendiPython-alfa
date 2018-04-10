@@ -34,6 +34,7 @@ class Mensaje:
         Mensaje.messages.setdefault('Calificacion', 'Calificacion: ')
         Mensaje.messages.setdefault('Calificadores','Numero de calificaciones: ')
         Mensaje.messages.setdefault('NewCalificacion','Nueva calificacion: ')
+        Mensaje.messages.setdefault('MejoresArrendadtarios', 'Lista de los arrendatarios')
 
     @staticmethod
     def ImprimirKey2(key):
@@ -70,8 +71,8 @@ class Mensaje:
         Mensaje.ImprimirKey('TiempoRestante')
         print(queda)
 
-    def IdNombre(id,nombre):
-        print(Mensaje.messages['ID'],id,Mensaje.messages['Nombre'],nombre, sep='\t')
+    def IdNombreCalificacion(id,nombre,calificacion):
+        print(Mensaje.messages['ID'],id,Mensaje.messages['Nombre'],nombre,Mensaje.messages['Calificacion'],calificacion, sep='\t')
 
     def Calificacion(id,nombre,calificacion,calificadores):
         print(Mensaje.messages['ID'],id,Mensaje.messages['Nombre'],nombre,Mensaje.messages['NewCalificacion'],calificacion,Mensaje.messages['Calificadores'],calificadores, sep='\t')
@@ -106,8 +107,9 @@ class Mensaje:
         13. Tiempo restante articulo
         14. Calificar Arrendador
         15. Calificar Arrendatario
-        16. Volver Inicio.
-        17. Salir.
+        16: Mejores arrendatarios
+        17. Volver Inicio.
+        18. Salir.
         """)
 
     def display_menu_registroUsuario(self):
