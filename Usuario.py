@@ -1,5 +1,6 @@
 import time
 from Articulo import *
+from Conexion import *  
 class Usuario:
 
     id_usuarios = 0        #contador
@@ -20,6 +21,8 @@ class Usuario:
 
             Usuario._setUsuarios(self)
             Usuario._setDickeys(self)
+            
+            GuardarUsuario(str(self.getId()),nombre,_password,self.getIsArrendador())  
 
 
     def toString(self):
