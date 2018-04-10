@@ -31,7 +31,9 @@ class Mensaje:
         Mensaje.messages.setdefault('SinRentas', 'No puedes consultar el tiempo restante de un articulo porque no tienes rentas actuales')
         Mensaje.messages.setdefault('Calificar', 'Ingrese la id del usuario a calificar')
         Mensaje.messages.setdefault('NuevaCalificacion', 'Ingrese la calificacion que le quiera dar a este usuario\nDebe ser un numero entero entre 1 y 5')
-        Mensaje.messages.setdefault('Calificar', 'Ingrese la id del usuario a calificar')
+        Mensaje.messages.setdefault('Calificacion', 'Calificacion: ')
+        Mensaje.messages.setdefault('Calificadores','Numero de calificaciones: ')
+        Mensaje.messages.setdefault('NewCalificacion','Nueva calificacion: ')
 
     @staticmethod
     def ImprimirKey2(key):
@@ -71,6 +73,9 @@ class Mensaje:
     def IdNombre(id,nombre):
         print(Mensaje.messages['ID'],id,Mensaje.messages['Nombre'],nombre, sep='\t')
 
+    def Calificacion(id,nombre,calificacion,calificadores):
+        print(Mensaje.messages['ID'],id,Mensaje.messages['Nombre'],nombre,Mensaje.messages['NewCalificacion'],calificacion,Mensaje.messages['Calificadores'],calificadores, sep='\t')
+
     def display_menu_bienvenida(self):
         print("""
           BIENVENIDO A ARRIENDIAPP
@@ -99,8 +104,10 @@ class Mensaje:
         11. Buscar articulo con la mayor disponibilidad
         12. Articulo con menos uso
         13. Tiempo restante articulo
-        14. Volver Inicio.
-        15. Salir.
+        14. Calificar Arrendador
+        15. Calificar Arrendatario
+        16. Volver Inicio.
+        17. Salir.
         """)
 
     def display_menu_registroUsuario(self):

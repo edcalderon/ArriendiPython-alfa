@@ -34,8 +34,9 @@ class Run:
         "12": self.MenosUso,
         "13": self.TiempoRestanteArticulo,
         "14": self.CalificarArrendador,
-        "15": self.Volver,
-        "16": self.Salir
+        "15": self.CalificarArrendatario,
+        "16": self.Volver,
+        "17": self.Salir
         }
 
     def CalificarArrendador(self):
@@ -43,11 +44,40 @@ class Run:
         _Users=Usuario.GetAllUsuarios()
         for i in _Users:
             obj=_Users[i]
-            aux1=obj.id
-            aux2=obj.nombre
-            Mensaje.IdNombre(aux1,aux2)
+            if obj.isArrendador==True:
+                aux1=obj.id
+                aux2=obj.nombre
+                Mensaje.IdNombre(aux1,aux2)
         Mensaje.ImprimirKey('Calificar')
         _id=int(input())
+        _user=Usuario.getUsuario(_id)
+        Mensaje.ImprimirKey('NuevaCalificacion')
+        _calificacion=int(input())
+        _user.setCalificacion(_calificacion)
+        aux1=_user.nombre
+        aux2=_user.calificacion
+        aux3=_user.calificadores
+        Mensaje.Calificacion(_id,aux1,aux2,aux3)
+
+    def CalificarArrendatario(self):
+        _Users={}
+        _Users=Usuario.GetAllUsuarios()
+        for i in _Users:
+            obj=_Users[i]
+            if obj.isArrendatario==True:
+                aux1=obj.id
+                aux2=obj.nombre
+                Mensaje.IdNombre(aux1,aux2)
+        Mensaje.ImprimirKey('Calificar')
+        _id=int(input())
+        _user=Usuario.getUsuario(_id)
+        Mensaje.ImprimirKey('NuevaCalificacion')
+        _calificacion=int(input())
+        _user.setCalificacion(_calificacion)
+        aux1=_user.nombre
+        aux2=_user.calificacion
+        aux3=_user.calificadores
+        Mensaje.Calificacion(_id,aux1,aux2,aux3)
 
     def TiempoRestanteArticulo(self):
         _list = []
@@ -345,9 +375,15 @@ class Run:
         u1 = Usuario("arriendi","god")  # usuario dios
         Usuario.users.append(u1)
         u1.setIsArrendador(True)          # arrendador por defecto
+        u1.setIsArrendatario(True)          # arrendatario por defecto
         u2 = Usuario("arriendi2","god2")  # usuario dios2
         Usuario.users.append(u2)
         u2.setIsArrendador(True)          # arrendador por defecto2
+        u2.setIsArrendatario(True)          # arrendatario por defecto
+        u2 = Usuario("arriendi3","god3")  # usuario dios3
+        Usuario.users.append(u2)
+        u2.setIsArrendador(False)          # No arrendador por defecto
+        u2.setIsArrendatario(True)          # arrendatario por defecto
         while self.break_while == 1:
             Mensaje().ImprimirKey2('display_menu_bienvenida')
     #       Mensaje().display_menu_bienvenida() # me gustan mas la funcunciones xD
