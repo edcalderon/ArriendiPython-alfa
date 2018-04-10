@@ -57,3 +57,26 @@ class Arrendatario(Usuario):
             aux2 = obj.getNombre()
             aux3 = obj.getCalificacion()
             Mensaje.IdNombreCalificacion(aux1,aux2,aux3)
+
+    def CalificarArrendatario():
+        from Mensaje import Mensaje
+        Mensaje.ImprimirKey('MejoresArrendadtarios')
+        _Users={}
+        _Users=Usuario.GetAllUsuarios()
+        for i in _Users:
+            obj=_Users[i]
+            if obj.isArrendatario==True:
+                aux1=obj.id
+                aux2=obj.nombre
+                aux3=obj.calificacion
+                Mensaje.IdNombreCalificacion(aux1,aux2,aux3)
+        Mensaje.ImprimirKey('Calificar')
+        _id=int(input())
+        _user=Usuario.getUsuario(_id)
+        Mensaje.ImprimirKey('NuevaCalificacion')
+        _calificacion=int(input())
+        _user.setCalificacion(_calificacion)
+        aux1=_user.nombre
+        aux2=_user.calificacion
+        aux3=_user.calificadores
+        Mensaje.Calificacion(_id,aux1,aux2,aux3)

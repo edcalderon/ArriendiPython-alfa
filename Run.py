@@ -34,8 +34,8 @@ class Run:
         "11": self.ArticuloMasDisponible,
         "12": Articulo.MenosUso,
         "13": self.TiempoRestanteArticulo,
-        "14": self.CalificarArrendador,
-        "15": self.CalificarArrendatario,
+        "14": Arrendador.CalificarArrendador,
+        "15": Arrendatario.CalificarArrendatario,
         "16": Arrendatario.mejoresArrendatarios,
         "17": Arrendador.PeoresArrendadores,
         "18": self.Volver,
@@ -238,48 +238,6 @@ class Run:
             return True
         else:
            return None
-
-    def CalificarArrendador(self):
-        _Users={}
-        _Users=Usuario.GetAllUsuarios()
-        for i in _Users:
-            obj=_Users[i]
-            if obj.isArrendador==True:
-                aux1=obj.id
-                aux2=obj.nombre
-                aux3=obj.calificacion
-                Mensaje.IdNombreCalificacion(aux1,aux2,aux3)
-        Mensaje.ImprimirKey('Calificar')
-        _id=int(input())
-        _user=Usuario.getUsuario(_id)
-        Mensaje.ImprimirKey('NuevaCalificacion')
-        _calificacion=int(input())
-        _user.setCalificacion(_calificacion)
-        aux1=_user.nombre
-        aux2=_user.calificacion
-        aux3=_user.calificadores
-        Mensaje.Calificacion(_id,aux1,aux2,aux3)
-
-    def CalificarArrendatario(self):
-        _Users={}
-        _Users=Usuario.GetAllUsuarios()
-        for i in _Users:
-            obj=_Users[i]
-            if obj.isArrendatario==True:
-                aux1=obj.id
-                aux2=obj.nombre
-                aux3=obj.calificacion
-                Mensaje.IdNombreCalificacion(aux1,aux2,aux3)
-        Mensaje.ImprimirKey('Calificar')
-        _id=int(input())
-        _user=Usuario.getUsuario(_id)
-        Mensaje.ImprimirKey('NuevaCalificacion')
-        _calificacion=int(input())
-        _user.setCalificacion(_calificacion)
-        aux1=_user.nombre
-        aux2=_user.calificacion
-        aux3=_user.calificadores
-        Mensaje.Calificacion(_id,aux1,aux2,aux3)
 
     def TiempoRestanteArticulo(self):
         _list = []
