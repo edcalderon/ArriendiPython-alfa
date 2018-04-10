@@ -15,6 +15,7 @@ class Usuario:
             self.setPassword(_password)
             self.setDate()
             self.setIsArrendador(False)
+            self.setIsArrendatario(True)
             self.articulos = []
             self.rentas = []
 
@@ -57,6 +58,10 @@ class Usuario:
         self.isArrendador = bool(valor)
     def getIsArrendador(self):
         return self.isArrendador
+    def setIsArrendatario(self,valor):
+        self.isArrendatario = bool(valor)
+    def getIsArrendatario(self):
+        return self.isArrendatario
     def setCalificacion(self,calificacion):
         self.calificadores+=1
         self.calificacion = int((self.calificacion + calificacion) / (self.calificadores))

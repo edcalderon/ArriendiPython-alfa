@@ -31,7 +31,11 @@ class Mensaje:
         Mensaje.messages.setdefault('SinRentas', 'No puedes consultar el tiempo restante de un articulo porque no tienes rentas actuales')
         Mensaje.messages.setdefault('Calificar', 'Ingrese la id del usuario a calificar')
         Mensaje.messages.setdefault('NuevaCalificacion', 'Ingrese la calificacion que le quiera dar a este usuario\nDebe ser un numero entero entre 1 y 5')
-        Mensaje.messages.setdefault('Calificar', 'Ingrese la id del usuario a calificar')
+        Mensaje.messages.setdefault('Calificacion', 'Calificacion: ')
+        Mensaje.messages.setdefault('Calificadores','Numero de calificaciones: ')
+        Mensaje.messages.setdefault('NewCalificacion','Nueva calificacion: ')
+        Mensaje.messages.setdefault('MejoresArrendadtarios', 'Lista de los arrendatarios')
+        Mensaje.messages.setdefault('PeoresArrendadores', 'Lista de los arrendadores')
 
     @staticmethod
     def ImprimirKey2(key):
@@ -68,8 +72,11 @@ class Mensaje:
         Mensaje.ImprimirKey('TiempoRestante')
         print(queda)
 
-    def IdNombre(id,nombre):
-        print(Mensaje.messages['ID'],id,Mensaje.messages['Nombre'],nombre, sep='\t')
+    def IdNombreCalificacion(id,nombre,calificacion):
+        print(Mensaje.messages['ID'],id,Mensaje.messages['Nombre'],nombre,Mensaje.messages['Calificacion'],calificacion, sep='\t')
+
+    def Calificacion(id,nombre,calificacion,calificadores):
+        print(Mensaje.messages['ID'],id,Mensaje.messages['Nombre'],nombre,Mensaje.messages['NewCalificacion'],calificacion,Mensaje.messages['Calificadores'],calificadores, sep='\t')
 
     def display_menu_bienvenida(self):
         print("""
@@ -100,8 +107,11 @@ class Mensaje:
         12. Articulo con menos uso
         13. Tiempo restante articulo
         14. CalificarArrendador
-        15. Volver Inicio.
-        16. Salir.
+        15. Calificar Arrendatario
+        16: Mejores arrendatarios
+        17: Peores arrendadores
+        18. Volver Inicio.
+        19. Salir.
         """)
 
     def display_menu_registroUsuario(self):
