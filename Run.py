@@ -287,7 +287,7 @@ class Run:
                 Arrendador.arrendadores.append(Arr1)
                 #Arr1 = Arrendatario(Run.usuario_actual.getNombre(),Run.usuario_actual.getPassword(),int(cedula),int(celular),str(direccion))
                 #Arrendatario.arrendatarios.append(Arr1)
-                #Run.usuario_actual.setIsArrendador(True)
+                Run.usuario_actual.setIsArrendador(True)
                 #print("Arrendador {0} ingresado correctamente.".format(Arr1.getNombre().upper()))
                 print(Arr1.toString())
             if opcion == "2":
