@@ -447,12 +447,13 @@ class Run:
 
             if opcion == "2" or opcion == "n" or opcion == "no":
                 Mensaje().display_menu_registroUsuario()
-                nombre = input("ingrese un nombre de usuario: ")
-                password = input("ingrese un nombre una constraseña: ")
-                u1 = Usuario(nombre,password)
+                user = input("ingrese un nombre de usuario: ")
+                passw = input("ingrese un nombre una constraseña: ")
+                u1 = Usuario(user,passw)
                 Usuario.users.append(u1)
                 print("Usuario creado correctamente")
                 print("estas son tus credenciales:")
+                Conexion.guardarUsuarios2(user,passw)
                 print(u1.toString())
 
 
