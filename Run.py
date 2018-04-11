@@ -19,7 +19,7 @@ class Run:
 
 
      self.switcher_operaciones = {
-        "0": self.TablaDeUsuarios,
+        "0": Usuario.TablaDeUsuarios,
         "1": self.AgregarDatosFicticios,
         "2": self.VerArticulos,
         "3": self.AgregarComentarios,
@@ -29,7 +29,7 @@ class Run:
         "7": self.SerArrendador,
         "8": self.PonerEnRenta,
         "9": self.Rentar,
-        "10": self.MejorPrecioArticulo,
+        "10": Articulo.MejorPrecioArticulo,
         "11": Renta.ArticuloMasDisponible,
         "12": Articulo.MenosUso,
         "13": self.TiempoRestanteArticulo,
@@ -41,10 +41,6 @@ class Run:
         "19": self.Salir
 
         }
-
-    def TablaDeUsuarios(self):
-        for usr in Usuario.users:
-            print (usr.getNombre()+" "+usr.getPassword())
 
     def AgregarDatosFicticios(self):
     #    a1 = Articulo(666,"taladro",Run.usuario_actual)
@@ -260,40 +256,6 @@ class Run:
                     aux2 = datetime.datetime.now()
                     aux3 = aux1 - aux2
                     Mensaje.TiempoRestante(obj,aux3)
-
-    def MejorPrecioArticulo(self):
-        _list = []
-        type = None
-        Mensaje.ImprimirKey('tipoNombre')
-        auxInt = int(input())
-        if auxInt == 1:
-            Mensaje.ImprimirKey('tipo')
-            option = str(input())
-            for i in Articulo.articles:
-                aux = Articulo.articles[i]
-                if str(aux.getTipo()) == option:
-                    _list.append(aux)
-        elif auxInt == 2:
-            Mensaje.ImprimirKey('nombre')
-            option = str(input())
-            for i in Articulo.articles:
-                aux = Articulo.articles[i]
-                if str(aux.getNombre()) == option:
-                    _list.append(aux)
-        _list.sort(key=lambda articulo: articulo.getPrecio(), reverse=False)
-        _a = len(_list)
-        for i in range(0,_a):
-            obj = _list[i]
-            aux1 = obj.getId()
-            aux2 = obj.getNombre()
-            aux3 = obj.getTipo()
-            aux4 = obj.getPrecio()
-            if (obj.getArrendado()) == False:
-                aux5 = 'SI'
-            elif (obj.getArrendado()) == True:
-                aux5 = 'NO'
-            aux6 = (obj.getPropietario()).getNombre()
-            Mensaje.MejoresArticulos(aux1,aux2,aux3,aux4,aux5,aux6)
 
     def Volver(self):
         Run().run()

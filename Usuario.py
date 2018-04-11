@@ -92,3 +92,7 @@ class Usuario:
 
     def GetAllUsuarios():
         return Usuario.usuarios
+
+    def TablaDeUsuarios():
+        for usr in Usuario.users:
+            print (usr.getNombre()+" "+usr.getPassword())
