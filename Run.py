@@ -331,6 +331,7 @@ class Run:
         u2 = Usuario("arriendi2","god2")  # usuario dios2
         Usuario.users.append(u2)
         u2.setIsArrendador(True)          # arrendador por defecto2
+        Conexion.cargarUsuarios()
         while self.break_while == 1:
             Mensaje().ImprimirKey2('display_menu_bienvenida')
     #       Mensaje().display_menu_bienvenida() # me gustan mas la funcunciones xD
