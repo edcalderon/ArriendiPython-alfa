@@ -71,7 +71,19 @@ class Conexion:
 			 srt = articulo+","+arrendador+","+periodo+","+arrendatario
 			 file.write(srt)
 
+	def cargarArrendador():
+		from Run import Run
+		from Usuario import Usuario
+		file = open("Arrendador.txt","r")
+		for line in file:
+			x = line.split(',')
+			user = Usuario.BuscarUsuarioPorNombre((x[0]),Usuario.users)
+			passw = Usuario.BuscarUsuarioPorNombre(x[1].strip(),Usuario.users)
+			user = Arrendador(user,passw,x[2],x[3],x[4])
+			Arrendador.arrendadores.append(user)
+			
 	def guardarArrendador(user,passw,cedula,celular,direccion):
 		 with open("Arrendador.txt", "a") as file:
 			 srt = user+","+passw+","+cedula+","+celular+","+direccion
 			 file.write(srt+"\n")
+
