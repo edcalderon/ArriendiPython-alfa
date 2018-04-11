@@ -324,18 +324,12 @@ class Run:
         sys.exit(0)
 
     def run(self):
-        Mensaje.AddMessages()
-        
-        #u1 = Usuario("arriendi","god")  # usuario dios
-        #Usuario.users.append(u1)
-        #u1.setIsArrendador(True)          # arrendador por defecto
-        #u2 = Usuario("arriendi2","god2")  # usuario dios2
-        #Usuario.users.append(u2)
-        #u2.setIsArrendador(True)          # arrendador por defecto2
+        Mensaje.AddMessages()             #puebla el dicionario de mensajes
+        Conexion.setUsuariosBase()        #setea usuarios predefinidos en usuarios.txt
         Conexion.cargarUsuarios()         #cargar los usuarios, uncluidos los dios
         while self.break_while == 1:
             Mensaje().ImprimirKey2('display_menu_bienvenida')
-    #       Mensaje().display_menu_bienvenida() # me gustan mas la funcunciones xD
+    #       Mensaje().display_menu_bienvenida() # me gustan mas las funcunciones xD
             opcion = input("ingrese una opcion: ")
             if opcion == "1" or opcion == "s" or opcion == "si":
                 usuario = input("ingrese el usuario: ")

@@ -6,13 +6,23 @@ from Usuario import *
 
 class Conexion:
 
-	@staticmethod
+	def setUsuariosBase():
+		with open("usuarios.txt", "a+") as file:
+			file.write("arriendi,god\n")
+			file.write("arriendi2,god2\n")
+			file.write("defaultUser1,pass1\n")
+			file.write("defaultUser2,pass2\n")
+
 	def cargarUsuarios():
 		file = open("usuarios.txt","r")
 		for line in file:
 			x = line.split(',')
 			user = Usuario(x[0],x[1])
+			if x[0] is 'arriendi' or 'arriendi2':
+				user.setIsArrendatario(True)
+				user.setIsArrendador(True)
 			Usuario.users.append(user)
+
 
 	def guardarUsuarios(user,passw):
 		 with open("usuarios.txt", "a") as file:
@@ -21,7 +31,7 @@ class Conexion:
 
 	def cargarArticulos():
 		from Run import Run
-		file = open("articulos.txt","r")
+		file = open("articulos.txt","a+")
 		for line in file:
 			x = line.split(',')
 			user = Usuario.BuscarUsuarioPorNombre(x[2].strip(),Usuario.users)
@@ -37,7 +47,7 @@ class Conexion:
 	def cargarRentas():
 		from Renta import Renta
 		from Run import Run
-		file = open("rentas.txt","r")
+		file = open("rentas.txt","a+")
 		for line in file:
 			x = line.split(',')
 			articulo = Articulo.BuscarArticuloPorNombre(str(x[0]),Run.articulos)
@@ -52,7 +62,7 @@ class Conexion:
 		 with open("rentas.txt", "a") as file:
 			 srt = articulo+","+arrendador+","+periodo+","+arrendatario
 			 file.write(srt)
-				
+
 	def guardarArrendador(user,passw,cedula,celular,direccion):
 		 with open("Arrendador.txt", "a") as file:
 			 srt = user+","+passw+","+cedula+","+celular+","+direccion
