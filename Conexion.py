@@ -13,15 +13,23 @@ class Conexion:
 			file.write("defaultUser1,pass1\n")
 			file.write("defaultUser2,pass2\n")
 
+	def setArticulosBase():
+		with open("usuarios.txt", "a+") as file:
+			file.write("arriendi,god\n")
+			file.write("arriendi2,god2\n")
+			file.write("defaultUser1,pass1\n")
+			file.write("defaultUser2,pass2\n")
+
 	def cargarUsuarios():
 		file = open("usuarios.txt","r")
 		for line in file:
 			x = line.split(',')
 			user = Usuario(x[0],x[1])
+			Usuario.users.append(user)
 			if x[0] is 'arriendi' or 'arriendi2':
 				user.setIsArrendatario(True)
 				user.setIsArrendador(True)
-			Usuario.users.append(user)
+
 
 
 	def guardarUsuarios(user,passw):
@@ -50,7 +58,7 @@ class Conexion:
 		file = open("rentas.txt","a+")
 		for line in file:
 			x = line.split(',')
-			articulo = Articulo.BuscarArticuloPorNombre(str(x[0]),Run.articulos)
+			articulo = Articulo.BuscarArticuloPorNombre((x[0]),Run.articulos)
 			arrendador = Usuario.BuscarUsuarioPorNombre(x[1].strip(),Usuario.users)
 			arrendatario = Usuario.BuscarUsuarioPorNombre(x[3].strip(),Usuario.users)
 			renta = Renta(articulo,arrendador,x[2],arrendatario)
