@@ -20,7 +20,7 @@ class Run:
 
 
      self.switcher_operaciones = {
-        "0": self.TablaDeUsuarios,
+        "0": Usuario.TablaDeUsuarios,
         "1": self.AgregarDatosFicticios,
         "2": self.VerArticulos,
         "3": self.AgregarComentarios,
@@ -42,10 +42,6 @@ class Run:
         "19": self.Salir
 
         }
-
-    def TablaDeUsuarios(self):
-        for usr in Usuario.users:
-            print (usr.getNombre()+" "+usr.getPassword())
 
     def AgregarDatosFicticios(self):
         a1 = Articulo(666,"taladro",Run.usuario_actual)
