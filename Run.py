@@ -325,13 +325,14 @@ class Run:
 
     def run(self):
         Mensaje.AddMessages()
-        u1 = Usuario("arriendi","god")  # usuario dios
-        Usuario.users.append(u1)
-        u1.setIsArrendador(True)          # arrendador por defecto
-        u2 = Usuario("arriendi2","god2")  # usuario dios2
-        Usuario.users.append(u2)
-        u2.setIsArrendador(True)          # arrendador por defecto2
-        Conexion.cargarUsuarios()
+        
+        #u1 = Usuario("arriendi","god")  # usuario dios
+        #Usuario.users.append(u1)
+        #u1.setIsArrendador(True)          # arrendador por defecto
+        #u2 = Usuario("arriendi2","god2")  # usuario dios2
+        #Usuario.users.append(u2)
+        #u2.setIsArrendador(True)          # arrendador por defecto2
+        Conexion.cargarUsuarios()         #cargar los usuarios, uncluidos los dios
         while self.break_while == 1:
             Mensaje().ImprimirKey2('display_menu_bienvenida')
     #       Mensaje().display_menu_bienvenida() # me gustan mas la funcunciones xD
@@ -341,7 +342,7 @@ class Run:
                 Run.usuario_actual = Usuario.BuscarUsuarioPorNombre(usuario,Usuario.users)
                 if Run.usuario_actual:
                            contraseña = input("ingrese la contraseña: ")
-                           if Run.usuario_actual.getPassword() == contraseña:
+                           if Run.usuario_actual.getPassword() == contraseña+'\n':  #sin el +\n me dice que la contraseña esta mala
                                    while self.break_while == 1:
                                         print(" \n Hola Usuario {0} ".format(usuario.upper()))
                                         Mensaje().display_menu_operaciones()
