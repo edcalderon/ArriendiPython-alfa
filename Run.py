@@ -31,7 +31,7 @@ class Run:
         "8": self.PonerEnRenta,
         "9": self.Rentar,
         "10": self.MejorPrecioArticulo,
-        "11": self.ArticuloMasDisponible,
+        "11": Renta.ArticuloMasDisponible,
         "12": Articulo.MenosUso,
         "13": self.TiempoRestanteArticulo,
         "14": Arrendador.CalificarArrendador,
@@ -259,7 +259,6 @@ class Run:
                     aux3 = aux1 - aux2
                     Mensaje.TiempoRestante(obj,aux3)
 
-
     def MejorPrecioArticulo(self):
         _list = []
         type = None
@@ -293,28 +292,6 @@ class Run:
                 aux5 = 'NO'
             aux6 = (obj.getPropietario()).getNombre()
             Mensaje.MejoresArticulos(aux1,aux2,aux3,aux4,aux5,aux6)
-
-    def ArticuloMasDisponible(self):
-        _list = []
-        Mensaje.ImprimirKey('PorNombre')
-        name = str(input())
-        _a = len((Renta.getRentas()))
-        for i in range(0,_a):
-            aux = Renta.rentas[i]
-            if name == (aux.getArticulo()).getNombre():
-                _list.append(aux)
-        _list.sort(key=lambda articulo: articulo.getFechafin(), reverse=True)
-        _a = len(_list)
-        for i in range(0,_a):
-            obj = _list[i]
-            if obj.getIsDisponible() == True:
-                aux1 = obj.getArticulo().getId()
-                aux2 = obj.getArticulo().getNombre()
-                aux3 = obj.getArticulo().getTipo()
-                aux4 = obj.getArticulo().getPrecio()
-                aux5 = obj.getArticulo().getPropietario().getNombre()
-                Mensaje.ImprimirDisponibilidadArticulos(obj,aux1,aux2,aux3,aux4,aux5)
-
 
     def Volver(self):
         Run().run()
