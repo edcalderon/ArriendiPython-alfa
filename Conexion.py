@@ -34,14 +34,16 @@ class Conexion:
 			file.write("1000,bananoSinTerminar,defaultUser2\n")
 
 	def cargarArticulos():
-		file = open("articulos.txt","r")
-		for line in file:
-			x = line.split(',')
-			user = Usuario.BuscarUsuarioPorNombre(x[2].strip(),Usuario.users)
-			if user:
-				articulo1 = Articulo(x[0],x[1],user)
-				Run.articulos.append(articulo1)
-
+		from Run import Run
+		with open("articulos.txt", "r") as file:
+			for line in file:
+				x = line.split(',')
+				user = Usuario.BuscarUsuarioPorNombre(x[2].strip(),Usuario.users)
+				run = Run()
+				if user:
+					articulo = Articulo(x[0],x[1],user)
+					user.articulos.append(articulo)
+					run.articulos.append(articulo)
 
 
 	def guardarArticulos(precio,nombre,propietario):
@@ -78,9 +80,8 @@ class Conexion:
 			passw = Usuario.BuscarUsuarioPorNombre(x[1].strip(),Usuario.users)
 			user = Arrendador(user,passw,x[2],x[3],x[4])
 			Arrendador.arrendadores.append(user)
-			
+
 	def guardarArrendador(user,passw,cedula,celular,direccion):
 		 with open("Arrendador.txt", "a") as file:
 			 srt = user+","+passw+","+cedula+","+celular+","+direccion
 			 file.write(srt+"\n")
-
