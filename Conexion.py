@@ -24,18 +24,18 @@ class Conexion:
 		file = open("usuarios.txt","r")
 		for line in file:
 			x = line.split(',')
-			user = Usuario(x[0],x[1])
+			user = Usuario(x[0],x[1].strip())
 			Usuario.users.append(user)
 			if x[0] is 'arriendi' or 'arriendi2':
 				user.setIsArrendatario(True)
 				user.setIsArrendador(True)
 
 
-
 	def guardarUsuarios(user,passw):
 		 with open("usuarios.txt", "a") as file:
 			 srt = user+","+passw
 			 file.write(srt+"\n")
+			 file.close()
 
 	def cargarArticulos():
 		from Run import Run

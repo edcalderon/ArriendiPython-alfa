@@ -336,7 +336,7 @@ class Run:
                 Run.usuario_actual = Usuario.BuscarUsuarioPorNombre(usuario,Usuario.users)
                 if Run.usuario_actual:
                            contraseña = input("ingrese la contraseña: ")
-                           if Run.usuario_actual.getPassword() == contraseña+'\n':  #sin el +\n me dice que la contraseña esta mala
+                           if Run.usuario_actual.getPassword() == str(contraseña):  #sin el +\n me dice que la contraseña esta mala
                                    while self.break_while == 1:
                                         print(" \n Hola Usuario {0} ".format(usuario.upper()))
                                         Mensaje().display_menu_operaciones()
@@ -360,6 +360,7 @@ class Run:
                 print("Usuario creado correctamente")
                 print("estas son tus credenciales:")
                 Conexion.guardarUsuarios(user,passw)
+                Conexion.cargarUsuarios()
                 print(u1.toString())
 
 
