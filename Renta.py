@@ -86,3 +86,25 @@ class Renta:
             self.avaible = True
     def getTiempoArriendo(self):
         return self.tiempo
+
+    def ArticuloMasDisponible():
+        from Mensaje import Mensaje
+        _list = []
+        Mensaje.ImprimirKey('PorNombre')
+        name = str(input())
+        _a = len((Renta.getRentas()))
+        for i in range(0,_a):
+            aux = Renta.rentas[i]
+            if name == (aux.getArticulo()).getNombre():
+                _list.append(aux)
+        _list.sort(key=lambda articulo: articulo.getFechafin(), reverse=True)
+        _a = len(_list)
+        for i in range(0,_a):
+            obj = _list[i]
+            if obj.getIsDisponible() == True:
+                aux1 = obj.getArticulo().getId()
+                aux2 = obj.getArticulo().getNombre()
+                aux3 = obj.getArticulo().getTipo()
+                aux4 = obj.getArticulo().getPrecio()
+                aux5 = obj.getArticulo().getPropietario().getNombre()
+                Mensaje.ImprimirDisponibilidadArticulos(obj,aux1,aux2,aux3,aux4,aux5)
