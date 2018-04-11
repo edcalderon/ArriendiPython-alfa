@@ -263,6 +263,7 @@ class Run:
         Mensaje.AddMessages()             #puebla el dicionario de mensajes
         Conexion.setUsuariosBase()        #setea usuarios predefinidos en usuarios.txt
         Conexion.cargarUsuarios()         #cargar los usuarios, uncluidos los dios
+        Conexion.cargarArrendador()
         while self.break_while == 1:
             Mensaje().ImprimirKey2('display_menu_bienvenida')
     #       Mensaje().display_menu_bienvenida() # me gustan mas las funcunciones xD
