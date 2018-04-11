@@ -4,7 +4,7 @@ from Mensaje import *
 from Articulo import *
 from Comentario import *
 from Renta import *
-from Conexion import Conexion
+from Conexion import *
 from Usuario import *
 from Arrendador import *
 from Arrendatario import *
@@ -13,7 +13,6 @@ class Run:
 
     usuario_actual = None
     articulos = []
-
     def __init__(self):
      self.break_while = 1
      self.break_while_2 = 1
@@ -48,27 +47,30 @@ class Run:
             print (usr.getNombre()+" "+usr.getPassword())
 
     def AgregarDatosFicticios(self):
-        a1 = Articulo(666,"taladro",Run.usuario_actual)
-        a2 = Articulo(999,"papa",Run.usuario_actual)
-        Run.articulos.append(a1)
-        Run.articulos.append(a2)
-        Run.usuario_actual.articulos.append(a1)
-        Run.usuario_actual.articulos.append(a1)
-        rent1 = Renta(a1,Run.usuario_actual,5)
-        Renta.rentas.append(rent1)
-        rent1.setTiempoArriendo(3)
-        rent1.setArrendatario(Usuario.BuscarUsuarioPorNombre('arriendi2',Usuario.users))
-        rent1.isDisponible = False
-        Run.usuario_actual.rentas.append(rent1)
-        Conexion.cargarUsuarios()
+    #    a1 = Articulo(666,"taladro",Run.usuario_actual)
+    #    a2 = Articulo(999,"papa",Run.usuario_actual)
+        Conexion.setArticulosBase()
         Conexion.cargarArticulos()
+
+    #    Run.articulos.append(a1)
+    #    Run.articulos.append(a2)
+    #    Run.usuario_actual.articulos.append(a1)
+    #    Run.usuario_actual.articulos.append(a1)
+    #    rent1 = Renta(a1,Run.usuario_actual,5)
+    #    Renta.rentas.append(rent1)
+    #    rent1.setTiempoArriendo(3)
+    #    rent1.setArrendatario(Usuario.BuscarUsuarioPorNombre('arriendi2',Usuario.users))
+    #    rent1.isDisponible = False
+    #    Run.usuario_actual.rentas.append(rent1)
+
+
 #        Conexion.cargarRentas()
 
         print("Datos ingresados correctamente")
 
     def VerArticulos(self):
         print("lista de articulos: ")
-        for art in Run.articulos:
+        for art in Run.articulos2:
             print(art.toString())
 
     def AgregarComentarios(self):

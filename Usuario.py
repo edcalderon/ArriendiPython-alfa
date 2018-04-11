@@ -18,7 +18,6 @@ class Usuario:
             self.setIsArrendatario(True)
             self.articulos = []
             self.rentas = []
-
             Usuario._setUsuarios(self)
             Usuario._setDickeys(self)
 

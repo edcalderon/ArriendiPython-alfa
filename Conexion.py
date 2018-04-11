@@ -1,19 +1,10 @@
-from pathlib import Path
-data_folder = Path("C:/")
-
 from Run import *
 from Usuario import *
+from Articulo import *
 
 class Conexion:
 
 	def setUsuariosBase():
-		with open("usuarios.txt", "a+") as file:
-			file.write("arriendi,god\n")
-			file.write("arriendi2,god2\n")
-			file.write("defaultUser1,pass1\n")
-			file.write("defaultUser2,pass2\n")
-
-	def setArticulosBase():
 		with open("usuarios.txt", "a+") as file:
 			file.write("arriendi,god\n")
 			file.write("arriendi2,god2\n")
@@ -30,22 +21,28 @@ class Conexion:
 				user.setIsArrendatario(True)
 				user.setIsArrendador(True)
 
-
 	def guardarUsuarios(user,passw):
 		 with open("usuarios.txt", "a") as file:
 			 srt = user+","+passw
 			 file.write(srt+"\n")
 			 file.close()
 
+	def setArticulosBase():
+		with open("articulos.txt", "a+") as file:
+			file.write("30.000,TvFullHD,arriendi\n")
+			file.write("999.000,PapelHigienicoTipleHojaMarcaArriendi,arriendi2\n")
+			file.write("1000,bananoSinTerminar,defaultUser2\n")
+
 	def cargarArticulos():
-		from Run import Run
-		file = open("articulos.txt","a+")
+		file = open("articulos.txt","r")
 		for line in file:
 			x = line.split(',')
 			user = Usuario.BuscarUsuarioPorNombre(x[2].strip(),Usuario.users)
-			articulo = Articulo(x[0],x[1],user)
-			Run.articulos.append(articulo)
-			user.articulos.append(articulo)
+			if user:
+				articulo1 = Articulo(x[0],x[1],user)
+				Run.articulos.append(articulo1)
+
+
 
 	def guardarArticulos(precio,nombre,propietario):
 		 with open("articulos.txt", "a") as file:
