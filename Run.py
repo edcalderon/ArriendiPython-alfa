@@ -126,6 +126,7 @@ class Run:
                 #Arr1 = Arrendatario(Run.usuario_actual.getNombre(),Run.usuario_actual.getPassword(),int(cedula),int(celular),str(direccion))
                 #Arrendatario.arrendatarios.append(Arr1)
                 Run.usuario_actual.setIsArrendador(True)
+                Conexion.guardarArrendador(Run.usuario_actual.getNombre(),Run.usuario_actual.getPassword(),str(cedula),str(celular),str(direccion))
                 print("Arrendador {0} ingresado correctamente.".format(Arr1.getNombre().upper()))
                 print(Arr1.toString())
             if opcion == "2":
