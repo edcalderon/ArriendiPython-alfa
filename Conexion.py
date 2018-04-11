@@ -52,3 +52,8 @@ class Conexion:
 		 with open("rentas.txt", "a") as file:
 			 srt = articulo+","+arrendador+","+periodo+","+arrendatario
 			 file.write(srt)
+				
+	def guardarArrendador(user,passw,cedula,celular,direccion):
+		 with open("Arrendador.txt", "a") as file:
+			 srt = user+","+passw+","+cedula+","+celular+","+direccion
+			 file.write(srt+"\n")
