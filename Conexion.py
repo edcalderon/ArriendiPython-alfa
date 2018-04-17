@@ -74,7 +74,7 @@ class Conexion:
 	def cargarArrendador():
 		from Run import Run
 		from Usuario import Usuario
-		file = open("Arrendador.txt","r")
+		file = open("Arrendador.txt","a+")
 		for line in file:
 			x = line.split(',')
 			user = Usuario.BuscarUsuarioPorNombre((x[0]),Usuario.users)
