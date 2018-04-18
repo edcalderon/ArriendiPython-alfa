@@ -6,7 +6,6 @@ class Articulo:
 
     iva = 0.19
     num_articulos = 0
-    comentarios = []
     id_articulos = 0        #contador
     articles = {}
     veces_usado=0
@@ -18,6 +17,7 @@ class Articulo:
         self.setPropietario(propietario)
         self.setDate()
         self.setTipo('NN')
+        self.comentarios = []
         self.setPublicado(True)
         self.setArrendado(False)
         Articulo.AddArticles(self)

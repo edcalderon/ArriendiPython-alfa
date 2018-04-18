@@ -1,10 +1,4 @@
-me toco crear esta rama porque testt no me corre no fui capaz de corregilo
+para ejecutar correr el archivo Run.py
 
+usuarios con todo desbloqueado : arriendi contraseña:god
 
-ojala esta rama tenga todo funcional, era una copia de seguridad de antes del commit que me dio errores
-
-
-corregi para que no instancie otro usuario cuando invoca en el constructor de la herencia,
-implemente la base de datos, de una forma mas simple, lee de los .txt y escribe en ellos
-aun no me cuadra  del todo guardar rentas, pero articulo y usuarios ya funcionan mañana continuo con
-los detalles

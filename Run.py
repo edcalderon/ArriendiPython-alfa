@@ -14,6 +14,7 @@ class Run:
     usuario_actual = None
     articulos = []
     def __init__(self):
+     from Renta import Renta
      self.break_while = 1
      self.break_while_2 = 1
      self.switcher_operaciones = {
@@ -42,8 +43,12 @@ class Run:
     def AgregarDatosFicticios(self):
         a1 = Articulo(666,"taladro",Run.usuario_actual)
         a2 = Articulo(999,"papa",Run.usuario_actual)
-        Conexion.setArticulosBase()  #no funciona
-        Conexion.cargarArticulos()   #no funciona
+        c1 = Comentario(a1,5,"excelente taladro")
+        c2 = Comentario(a2,0,"que mala papa")
+        a1.comentarios.append(c1)
+        a2.comentarios.append(c2)
+        Conexion.setArticulosBase()
+        #Conexion.cargarArticulos()   #no funciona
         Run.articulos.append(a1)
         Run.articulos.append(a2)
         Run.usuario_actual.articulos.append(a1)
@@ -78,8 +83,9 @@ class Run:
 
     def VerComentarios(self):
          print("Lista de comentarios: ")
-         for coment in Articulo.comentarios:
-             print(coment.toString())
+         for art in Run.articulos:
+             for coment in art.comentarios:
+                print(coment.toString())
 
     def AgregarArticulos(self):
         opcion = input("cuantos articulos desea ingresar: ")
